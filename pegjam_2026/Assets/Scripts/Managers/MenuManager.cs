@@ -82,11 +82,15 @@ namespace lvl_0
                     case MenuItem.Start:
                         LevelAttendant.Instance.LoadGameState(GameState.GameStart);
                         break;
-                    case MenuItem.Settings:
-                        LevelAttendant.Instance.LoadGameState(GameState.Settings);
-                        break;
+                    //case MenuItem.Settings:
+                    //    LevelAttendant.Instance.LoadGameState(GameState.Settings);
+                    //    break;
                     case MenuItem.Quit:
+#if UNITY_EDITOR
+                        UnityEditor.EditorApplication.isPlaying = false;
+#else
                         Application.Quit();
+#endif
                         break;
                 }
                 m_itemSelected = true;
@@ -106,7 +110,7 @@ namespace lvl_0
     public enum MenuItem
     {
         Start,
-        Settings,
+        // Settings,
         Quit
     }
 }
