@@ -16,7 +16,14 @@ public class ItemTile : MonoBehaviour
     [SerializeField]
     private Color m_inactiveColor = Color.grey;
 
+    private Item m_parentItem;
+
     private ItemTileState m_state;
+
+    private void Awake()
+    {
+        m_parentItem = GetComponentInParent<Item>();
+    }
 
     public void SetState(ItemTileState newState)
     {
@@ -34,6 +41,12 @@ public class ItemTile : MonoBehaviour
         }
 
         m_state = newState;
+    }
+
+    private void OnMouseDown()
+    {
+        if (m_parentItem != null)
+            m_parentItem.OnSelected();
     }
 }
 

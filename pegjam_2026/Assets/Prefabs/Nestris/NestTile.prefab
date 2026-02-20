@@ -97,3 +97,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ff4943ee47b131f46b28dbaffd8078a2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_sprite: {fileID: 2117378023241616606}
+  m_emptyColor: {r: 1, g: 1, b: 1, a: 1}
+  m_occupiedColor: {r: 0, g: 0, b: 1, a: 1}

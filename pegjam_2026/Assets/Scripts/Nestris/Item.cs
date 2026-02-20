@@ -10,26 +10,25 @@ public class Item : MonoBehaviour
     [SerializeField]
     private ItemTile m_tilePrefab;
 
-    [SerializeField]
-    private Nest m_board;
-
-    private Camera m_camera;
-    private bool m_active = true;
+    public bool Locked = true;
 
     private Dictionary<Vector2Int, ItemTile> m_tiles = new Dictionary<Vector2Int, ItemTile>();
+    private Vector3 m_originalPosition = Vector3.zero;
 
     private void Awake()
     {
-        m_camera = Camera.main;
-
+        m_originalPosition = transform.position;
         BuildVisualization();
+    }
+
+    public void OnSelected()
+    {
+        MouseFollower.Instance.SelectPiece(this);
     }
 
     private void BuildVisualization()
     {
-        foreach(var tile in m_tiles.Values)
-            Destroy(tile.gameObject);
-        m_tiles.Clear();
+        ClearTiles();
 
         for (int i = 0; i < ItemShape.size; i++)
         {
@@ -38,15 +37,32 @@ public class Item : MonoBehaviour
                 if (ItemShape.Get(i,j))
                 {
                     var tile = Instantiate(m_tilePrefab, new Vector3(j + transform.position.x, transform.position.y - i, 0), Quaternion.identity, transform);
+                    tile.SetState(ItemTileState.Inactive);
                     m_tiles.Add(new Vector2Int(j, i), tile);
                 }
             }
         }
     }
 
-    private void ValidateAgainstBoard(Vector2Int boardAnchor)
+    private void ClearTiles()
     {
-        // Debug.Log(boardAnchor.ToString());
+        foreach (var tile in m_tiles.Values)
+            Destroy(tile.gameObject);
+        m_tiles.Clear();
+    }
+
+    public void ReturnToSender()
+    {
+        foreach(var kvp in m_tiles)
+        {
+            kvp.Value.SetState(ItemTileState.Inactive);
+        }
+        transform.position = m_originalPosition;
+    }
+
+    public bool ValidateAgainstBoard(Vector2Int boardAnchor, Nest board)
+    {
+        bool overallValid = true;
         foreach(var kvp in m_tiles)
         {
             int c = kvp.Key.x;
@@ -55,14 +71,14 @@ public class Item : MonoBehaviour
             int boardCol = boardAnchor.x + c;
             int boardRow = boardAnchor.y - r;
 
-
-            bool valid = m_board != null && m_board.IsCellValid(boardCol, boardRow);
-            Debug.Log(boardCol + " " + boardRow + ": " + valid);
+            bool valid = board.IsCellValid(boardCol, boardRow);
+            overallValid &= valid;
             kvp.Value.SetState(valid ? ItemTileState.ActiveValid : ItemTileState.ActiveInvalid);
         }
+        return overallValid;
     }
 
-    private void InvalidateShape()
+    public void InvalidateShape()
     {
         foreach(var kvp in m_tiles)
         {
@@ -70,44 +86,26 @@ public class Item : MonoBehaviour
         }
     }
 
-    private Vector2Int m_previousCell = new Vector2Int(-1, -1);
-    private bool m_locked = true;
-
-    private void Update()
+    public bool PlacePiece(Vector2Int boardAnchor, Nest board)
     {
-        if (m_active)
+        foreach (var kvp in m_tiles)
         {
-            Vector3 mouseScreen = Input.mousePosition;
+            int c = kvp.Key.x;
+            int r = kvp.Key.y;
 
-            if (mouseScreen.x < 0 || mouseScreen.x > Screen.width ||
-                mouseScreen.y < 0 || mouseScreen.y > Screen.height)
-            {
-                return;
-            }
+            int boardCol = boardAnchor.x + c;
+            int boardRow = boardAnchor.y - r;
 
-            Vector3 worldPos = m_camera.ScreenToWorldPoint(mouseScreen);
-            worldPos.z = transform.position.z;
 
-            if (m_board != null && m_board.GetBounds().Contains(worldPos))
+            bool valid = board != null && board.PlacePiece(boardCol, boardRow);
+            if (!valid)
             {
-                Vector2Int cell = m_board.WorldToCell(worldPos);
-                if (m_previousCell != cell)
-                {
-                    m_previousCell = cell;
-                    ValidateAgainstBoard(cell);
-                    transform.position = m_board.GetCellWorldPosition(cell.x, cell.y);
-                    m_locked = true;
-                }
-            }
-            else
-            {
-                if (m_locked)
-                {
-                    m_locked = false;
-                    InvalidateShape();
-                }
-                transform.position = worldPos;
+                Debug.LogError("Error! Trying to palce invalid piece");
+                return valid;
             }
         }
+
+        ClearTiles();
+        return true;
     }
 }

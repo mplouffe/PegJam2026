@@ -1,0 +1,82 @@
+using lvl_0;
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class MouseFollower : SingletonBase<MouseFollower>
+{
+    [SerializeField]
+    private Nest m_board;
+
+    private Item m_activeItem = null;
+    private Camera m_camera;
+    private Vector2Int m_previousCell = new Vector2Int(-1, -1);
+
+    protected override void Awake()
+    {
+        base.Awake();
+        m_camera = Camera.main;
+    }
+
+    public void SelectPiece(Item newItem)
+    {
+        m_activeItem = newItem;
+    }
+
+    private void Update()
+    {
+        if (m_activeItem != null)
+        {
+            Vector3 mouseScreen = Input.mousePosition;
+
+            if (mouseScreen.x < 0 || mouseScreen.x > Screen.width ||
+                mouseScreen.y < 0 || mouseScreen.y > Screen.height)
+            {
+                return;
+            }
+
+            Vector3 worldPos = m_camera.ScreenToWorldPoint(mouseScreen);
+            worldPos.z = transform.position.z;
+
+            if (m_board != null && m_board.GetBounds().Contains(worldPos))
+            {
+                Vector2Int cell = m_board.WorldToCell(worldPos);
+                if (m_previousCell != cell)
+                {
+                    m_previousCell = cell;
+                    m_activeItem.ValidateAgainstBoard(cell, m_board);
+                    m_activeItem.transform.position = m_board.GetCellWorldPosition(cell.x, cell.y);
+                    m_activeItem.Locked = true;
+                }
+
+                if (Input.GetMouseButton(0))
+                {
+                    if (m_activeItem.ValidateAgainstBoard(cell, m_board))
+                    {
+                        if (m_activeItem.PlacePiece(cell, m_board))
+                        {
+                            m_activeItem = null;
+                        }
+                    }
+                }
+            }
+            else
+            {
+                if (m_activeItem.Locked)
+                {
+                    m_activeItem.Locked = false;
+                    m_activeItem.InvalidateShape();
+                    m_previousCell = new Vector2Int(-1, -1);
+                }
+                m_activeItem.transform.position = worldPos;
+            }
+
+            if (Input.GetMouseButton(1))
+            {
+                m_activeItem.ReturnToSender();
+                m_activeItem = null;
+            }
+        }
+    }
+
+}

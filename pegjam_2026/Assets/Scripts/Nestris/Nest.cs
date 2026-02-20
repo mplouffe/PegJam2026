@@ -61,4 +61,15 @@ public class Nest : MonoBehaviour
 
         return !m_nest[row][col].IsOccupied;
     }
+
+    public bool PlacePiece(int col, int row)
+    {
+        if (col < 0 || col >= m_nestWidth || row < 0 || row >= m_nestHeight)
+            return false;
+
+        if (m_nest[row][col].IsOccupied) return false;
+
+        m_nest[row][col].SetState(NestTileState.Occupied);
+        return true;
+    }
 }
