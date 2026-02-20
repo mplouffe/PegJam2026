@@ -14,28 +14,32 @@ namespace lvl_0
         private List<Card> m_cards;
         Dictionary<ECardType, int> m_cardTypeCounts = new Dictionary<ECardType, int>();
 
-        private void Start()
+        private void Awake()
 		{
             m_cards = new List<Card>();
             m_cardTypeCounts = new Dictionary<ECardType, int>();
 
             InitCardDeck();
-		}
 
-		private void Update()
+            // TO DO - call this on player action like "DRAW CARDS"
+            DealCardDeck(4);
+        }
+
+        private void Update()
 		{
 			
 		}
 
 		private void InitCardDeck()
 		{
-			if (m_cardDeck == null)
+            if (m_cardDeck == null)
 			{
 				Debug.LogError("[CardDeckManager] Card Deck is null.");
 				return;
 			}
 
 			m_cards = m_cardDeck.GetCards();
+            Debug.Log("CardDeckManager - InitCardDeck " + m_cards.Count);
         }
 
 		public void DealCardDeck(int numOfCards)

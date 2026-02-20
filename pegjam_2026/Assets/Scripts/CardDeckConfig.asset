@@ -9,10 +9,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6ae5cf2a8895e5041987060913859301, type: 3}
+  m_Script: {fileID: 11500000, guid: ee49e3af98f35ee4d9117c7afa076c0c, type: 3}
   m_Name: CardDeckConfig
   m_EditorClassIdentifier: 
-  typeLimits:
+  cardTypeLimits:
   - cardType: 0
     maxAllowed: 9999
   - cardType: 1
