@@ -12,7 +12,6 @@ namespace lvl_0
 
         [Header("Images")]
         [SerializeField] private Image m_backgroundImage;
-        [SerializeField] private Image m_gridImage;
         [SerializeField] private Image m_itemImage;
 
         [Header("Card Data")]

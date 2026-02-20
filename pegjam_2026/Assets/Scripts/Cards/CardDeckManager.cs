@@ -9,12 +9,17 @@ namespace lvl_0
         [SerializeField] private Transform m_cardContainer;
         [SerializeField] private GameObject m_cardPrefab;
         [SerializeField] private CardDeck m_cardDeck;
+        [SerializeField] private CardDeckConfig m_cardDeckConfig;
 
-		private List<Card> m_cards;
+        private List<Card> m_cards;
+        Dictionary<ECardType, int> m_cardTypeCounts = new Dictionary<ECardType, int>();
 
         private void Start()
 		{
-			InitCardDeck();
+            m_cards = new List<Card>();
+            m_cardTypeCounts = new Dictionary<ECardType, int>();
+
+            InitCardDeck();
 		}
 
 		private void Update()
@@ -47,20 +52,51 @@ namespace lvl_0
                 return;
             }
 
+
             ShuffleDeck(m_cards);
 
-            List<Card> hand = m_cards.GetRange(0, numOfCards - 1);
+            List<Card> hand = test(numOfCards);
 
             InstantiateCards(hand);
         }
 
 		private void ShuffleDeck(List<Card> list)
 		{
-            for(int i = list.Count - 1; i > 0; i--)
+            for (int i = list.Count - 1; i > 0; i--)
 			{
                 int randomIndex = Random.Range(0, i + 1);
                 (list[i], list[randomIndex]) = (list[randomIndex], list[i]);
             }
+        }
+
+        private List<Card> test(int numCards)
+        {
+            List<Card> pickedCards = new List<Card>();
+
+            // Set count for each Card Type to 0
+            foreach (ECardType type in System.Enum.GetValues(typeof(ECardType)))
+            {
+                m_cardTypeCounts[type] = 0;
+            }
+
+            // Select cards but no more then max amount of certain types
+            foreach (var card in m_cards)
+            {
+                if (pickedCards.Count >= numCards)
+                {
+                    break;
+                }
+
+                int maxAllowed = m_cardDeckConfig.GetMaxForCardType(card.cardType);
+
+                if (m_cardTypeCounts[card.cardType] < maxAllowed)
+                {
+                    pickedCards.Add(card);
+                    m_cardTypeCounts[card.cardType]++;
+                }
+            }
+
+            return pickedCards;
         }
 
         private void InstantiateCards(List<Card> dealtHand)
