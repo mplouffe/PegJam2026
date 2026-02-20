@@ -1,0 +1,16 @@
+using System.Collections.Generic;
+using UnityEngine;
+
+namespace lvl_0
+{
+    [CreateAssetMenu(fileName = "New Card Deck", menuName = "ScriptableObjects/CardDeck")]
+    public class CardDeck : ScriptableObject
+    {
+        public List<Card> cardsMap = new List<Card>();
+
+        public List<Card> GetCards()
+        {
+            return cardsMap;
+        }
+    }
+}
