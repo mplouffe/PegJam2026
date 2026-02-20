@@ -52,4 +52,13 @@ public class Nest : MonoBehaviour
         int row = Mathf.RoundToInt(local.y);
         return new Vector2Int(col, row);
     }
+
+    public bool IsCellValid(int col, int row)
+    {
+        // Out of bounds
+        if (col < 0 || col >= m_nestWidth || row < 0 || row >= m_nestHeight)
+            return false;
+
+        return !m_nest[row][col].IsOccupied;
+    }
 }

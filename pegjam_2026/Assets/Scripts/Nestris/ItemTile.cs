@@ -4,15 +4,42 @@ using UnityEngine;
 
 public class ItemTile : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    [SerializeField]
+    private SpriteRenderer m_spriteRenderer;
 
-    // Update is called once per frame
-    void Update()
+    [SerializeField]
+    private Color m_validActiveColor = Color.green;
+
+    [SerializeField]
+    private Color m_invalidActiveColor = Color.red;
+
+    [SerializeField]
+    private Color m_inactiveColor = Color.grey;
+
+    private ItemTileState m_state;
+
+    public void SetState(ItemTileState newState)
     {
-        
+        switch (newState)
+        {
+            case ItemTileState.Inactive:
+                m_spriteRenderer.color = m_inactiveColor;
+                break;
+            case ItemTileState.ActiveValid:
+                m_spriteRenderer.color = m_validActiveColor;
+                break;
+            case ItemTileState.ActiveInvalid:
+                m_spriteRenderer.color = m_invalidActiveColor;
+                break;
+        }
+
+        m_state = newState;
     }
+}
+
+public enum ItemTileState
+{
+    Inactive,
+    ActiveValid,
+    ActiveInvalid
 }
