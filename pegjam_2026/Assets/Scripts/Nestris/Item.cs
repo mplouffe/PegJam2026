@@ -21,11 +21,6 @@ public class Item : MonoBehaviour
         BuildVisualization();
     }
 
-    public void OnSelected()
-    {
-        MouseFollower.Instance.SelectPiece(this);
-    }
-
     private void BuildVisualization()
     {
         ClearTiles();

@@ -45,7 +45,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ItemShape:
-    size: 2
-    cells: 01010000
+    size: 3
+    cells: 010000010100010000
   m_tilePrefab: {fileID: 2787492066167878676, guid: 3ed4b15e708b1824389c846553fac3e6, type: 3}
-  m_board: {fileID: 0}
+  Locked: 1

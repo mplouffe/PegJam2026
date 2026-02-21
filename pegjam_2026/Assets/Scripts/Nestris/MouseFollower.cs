@@ -9,6 +9,7 @@ public class MouseFollower : SingletonBase<MouseFollower>
     private Nest m_board;
 
     private Item m_activeItem = null;
+    private CardManager m_activeItemCard = null;
     private Camera m_camera;
     private Vector2Int m_previousCell = new Vector2Int(-1, -1);
 
@@ -18,9 +19,10 @@ public class MouseFollower : SingletonBase<MouseFollower>
         m_camera = Camera.main;
     }
 
-    public void SelectPiece(Item newItem)
+    public void SelectPiece(Item newItem, CardManager card)
     {
         m_activeItem = newItem;
+        m_activeItemCard = card;
     }
 
     private void Update()
@@ -55,6 +57,7 @@ public class MouseFollower : SingletonBase<MouseFollower>
                     {
                         if (m_activeItem.PlacePiece(cell, m_board))
                         {
+                            m_activeItemCard.SetState(CardState.Used);
                             m_activeItem = null;
                         }
                     }
@@ -73,7 +76,9 @@ public class MouseFollower : SingletonBase<MouseFollower>
 
             if (Input.GetMouseButton(1))
             {
-                m_activeItem.ReturnToSender();
+                Destroy(m_activeItem.gameObject);
+                m_activeItemCard.SetState(CardState.Dealt);
+                m_activeItemCard = null;
                 m_activeItem = null;
             }
         }

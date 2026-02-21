@@ -11,5 +11,6 @@ namespace lvl_0
         public int cardValue;
         public Sprite cardSprite;
         public ECardType cardType;
+        public BoolGrid itemShape;
     }
 }

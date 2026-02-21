@@ -26,8 +26,7 @@ namespace lvl_0
         }
 
         private void Update()
-		{
-			
+		{	
 		}
 
 		private void InitCardDeck()
@@ -110,7 +109,7 @@ namespace lvl_0
                 GameObject newCardObj = Instantiate(m_cardPrefab, m_cardContainer);
                 CardManager card = newCardObj.GetComponent<CardManager>();
 
-                card.InitCard(dealtCard.cardValue, dealtCard.cardDesciption, dealtCard.cardSprite);
+                card.InitCard(dealtCard.cardValue, dealtCard.cardDesciption, dealtCard.cardSprite, dealtCard.itemShape);
             }
         }
     }

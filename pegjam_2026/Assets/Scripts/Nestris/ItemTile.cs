@@ -42,12 +42,6 @@ public class ItemTile : MonoBehaviour
 
         m_state = newState;
     }
-
-    private void OnMouseDown()
-    {
-        if (m_parentItem != null)
-            m_parentItem.OnSelected();
-    }
 }
 
 public enum ItemTileState
