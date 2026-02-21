@@ -407,10 +407,21 @@ MonoBehaviour:
   m_itemValue: {fileID: 8024487539557791282}
   m_backgroundImage: {fileID: 1164770232408458733}
   m_itemImage: {fileID: 812459541720385311}
+  m_card:
+    internalDescription: 
+    cardDesciption: 
+    cardSprite: {fileID: 0}
+    cardValue: 0
+    cardType: 0
+    itemShape:
+      size: 4
+      cells: 
+    cardColor: {r: 0, g: 0, b: 0, a: 0}
   m_cardValue: 0
   m_cardDescription: 
   m_cardSprite: {fileID: 0}
   m_itemPrefab: {fileID: 6302787106663343526, guid: 4acccf8be2af6374da7ffb526c0e41f7, type: 3}
+  m_itemVisual: {fileID: -910202310094648694, guid: f5acbd19245ce0e428026d0f998b0aff, type: 3}
 --- !u!114 &3675664649887363158
 MonoBehaviour:
   m_ObjectHideFlags: 0

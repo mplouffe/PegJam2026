@@ -2,6 +2,7 @@ using lvl_0;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static UnityEngine.Rendering.DebugUI.Table;
 
 public class Item : MonoBehaviour
 {
@@ -12,6 +13,9 @@ public class Item : MonoBehaviour
 
     [SerializeField]
     private ItemTile m_tilePrefab;
+
+    [SerializeField]
+    private ItemVisual m_itemVisual;
 
     public bool Locked = true;
 
@@ -26,17 +30,33 @@ public class Item : MonoBehaviour
     {
         ClearTiles();
 
+        int numOfRows = -1;
+        int numOfCols = -1;
+
         for (int i = 0; i < ItemShape.size; i++)
         {
-            for(int j = 0;j < ItemShape.size; j++)
+            for (int j = 0; j < ItemShape.size; j++)
             {
-                if (ItemShape.Get(i,j))
+                if (ItemShape.Get(i, j))
                 {
                     var tile = Instantiate(m_tilePrefab, new Vector3(j + transform.position.x, transform.position.y - i, 0), Quaternion.identity, transform);
                     m_tiles.Add(new Vector2Int(j, i), tile);
+
+                    if (i > numOfRows) numOfRows = i;
+                    if (j > numOfCols) numOfCols = j;
                 }
             }
         }
+        numOfCols++;
+        numOfRows++;
+
+        var itemVisual = Instantiate(m_itemVisual, new Vector3(0, 0, 0), Quaternion.identity, transform);
+        itemVisual.Init(ItemCard.cardSprite);
+        float itemVisualPosXOffset = ((float)numOfCols / 2) - 0.5f;
+        float itemVisualPosYOffset = ((float)numOfRows / 2) - 0.5f;
+
+        Vector3 newPos = new Vector3(itemVisualPosXOffset, itemVisualPosYOffset, 0);
+        itemVisual.transform.SetPositionAndRotation(newPos, itemVisual.transform.rotation);
     }
 
     private void ClearTiles()
@@ -82,11 +102,10 @@ public class Item : MonoBehaviour
             int boardCol = boardAnchor.x + c;
             int boardRow = boardAnchor.y - r;
 
-
             bool valid = board != null && board.PlacePiece(boardCol, boardRow, ItemCard);
             if (!valid)
             {
-                Debug.LogError("Error! Trying to palce invalid piece");
+                Debug.LogError("Error! Trying to place invalid piece");
                 return valid;
             }
         }

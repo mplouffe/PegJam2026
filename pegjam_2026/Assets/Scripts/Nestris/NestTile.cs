@@ -1,7 +1,4 @@
 using lvl_0;
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class NestTile : MonoBehaviour
@@ -66,7 +63,7 @@ public class NestTile : MonoBehaviour
                 m_sprite.color = m_emptyColor;
                 break;
             case NestTileState.Occupied:
-                m_sprite.color = m_card.cardColor;
+                //m_sprite.color = m_card.cardColor;
                 break;
         }
         State = newState;

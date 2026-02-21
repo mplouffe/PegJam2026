@@ -95,7 +95,7 @@ namespace lvl_0
             m_itemPrefab.ItemShape = m_itemShape;
             m_itemPrefab.ItemCard = m_card;
             var activeItem = Instantiate(m_itemPrefab, eventData.pointerPressRaycast.worldPosition, Quaternion.identity);
-            MouseFollower.Instance.SelectPiece(activeItem, this);
+            MouseFollower.Instance.SelectPiece(activeItem,  this);
             SetState(CardState.Picked);
         }
     }
