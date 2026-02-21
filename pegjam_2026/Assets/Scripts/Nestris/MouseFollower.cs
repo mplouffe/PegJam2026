@@ -72,14 +72,20 @@ public class MouseFollower : SingletonBase<MouseFollower>
                     m_previousCell = new Vector2Int(-1, -1);
                 }
                 m_activeItem.transform.position = worldPos;
+
+                if (Input.GetMouseButton(0))
+                {
+                    Destroy(m_activeItem.gameObject);
+                    m_activeItemCard.SetState(CardState.Dealt);
+                    m_activeItemCard = null;
+                    m_activeItem = null;
+                }
             }
 
-            if (Input.GetMouseButton(1))
+            if (Input.GetMouseButtonDown(1) && m_activeItem != null)
             {
-                Destroy(m_activeItem.gameObject);
-                m_activeItemCard.SetState(CardState.Dealt);
-                m_activeItemCard = null;
-                m_activeItem = null;
+                m_activeItem.Rotate();
+                m_previousCell = new Vector2Int(-1, -1);
             }
         }
     }
