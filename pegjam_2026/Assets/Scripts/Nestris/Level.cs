@@ -20,6 +20,6 @@ public class Level
                 passes++;
             }
         }
-        return passes >= LevelGoals.Count / 2;
+        return passes >= (LevelGoals.Count / 2.0f);
     }
 }

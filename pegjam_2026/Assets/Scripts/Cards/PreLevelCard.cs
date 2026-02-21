@@ -5,7 +5,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class LevelCard : MonoBehaviour
+public class PreLevelCard : MonoBehaviour
 {
     [SerializeField]
     private TextMeshProUGUI m_titleText;
@@ -17,19 +17,19 @@ public class LevelCard : MonoBehaviour
     private Transform m_goalsContainer;
 
     [SerializeField]
-    private Button m_picklevelButton;
+    private Button m_pickLevelButton;
 
     private Level m_level;
     private int m_index;
 
     private void Awake()
     {
-        m_picklevelButton.onClick.AddListener(OnPickLevelClicked);
+        m_pickLevelButton.onClick.AddListener(OnPickLevelClicked);
     }
 
     private void OnDestroy()
     {
-        m_picklevelButton.onClick.RemoveListener(OnPickLevelClicked);
+        m_pickLevelButton.onClick.RemoveListener(OnPickLevelClicked);
     }
 
     public void OnPickLevelClicked()
@@ -44,8 +44,8 @@ public class LevelCard : MonoBehaviour
         m_titleText.text = level.LevelName;
         foreach(var goal in level.LevelGoals)
         {
-            m_goalFieldPrefab.SetGoal(goal);
-            Instantiate(m_goalFieldPrefab, m_goalsContainer);
+            var goalPrefab = Instantiate(m_goalFieldPrefab, m_goalsContainer);
+            goalPrefab.PopulateGoal(goal);
         }
     }
 

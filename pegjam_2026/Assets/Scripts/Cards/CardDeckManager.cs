@@ -52,6 +52,7 @@ namespace lvl_0
                     break;
                 case DeckManagerState.Scoring:
                     m_drawCardButton.gameObject.SetActive(false);
+                    m_cardContainer.gameObject.SetActive(false);
                     break;
             }
 

@@ -46,6 +46,13 @@ namespace lvl_0
             SetState(LevelManagerState.EvaluatingLevel);
         }
 
+        public void EndLevel()
+        {
+            // TODO: Logic to go back into gameplay loop
+            // for now we just end the game
+            LevelAttendant.Instance.LoadGameState(GameState.GameOver);
+        }
+
         private void SetState(LevelManagerState newState)
         {
             if (m_state == newState) return;
@@ -55,7 +62,7 @@ namespace lvl_0
                     PopupsManager.Instance.ShowLevels(m_levels);
                 break;
                 case LevelManagerState.PlayingLevel:
-                    PopupsManager.Instance.ClearLevels();
+                    PopupsManager.Instance.ClearLevelInfo();
                     CardDeckManager.Instance.DealHand();
                     break;
                 case LevelManagerState.EvaluatingLevel:

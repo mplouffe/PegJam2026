@@ -26,6 +26,9 @@ public class Nest : SingletonBase<Nest>
     private Duration m_scoringWaitDuration;
 
     [SerializeField]
+    private Duration m_postScoreWaitDuration;
+
+    [SerializeField]
     private Button m_scoreNestButton;
 
     [SerializeField]
@@ -64,9 +67,17 @@ public class Nest : SingletonBase<Nest>
             case NestState.Scoring:
                 m_scoringWaitDuration.Reset(0.5f);
                 m_scoringTracker = new Vector2Int(m_nestHeight-1, m_nestWidth-1);
+                CardDeckManager.Instance.StopDealing();
+                m_scoreNestButton.gameObject.SetActive(false);
                 break;
             case NestState.Placing:
                 m_scoreNestButton.gameObject.SetActive(true);
+                break;
+            case NestState.Waiting:
+                m_postScoreWaitDuration.Reset();
+                break;
+            case NestState.Ending:
+                LevelManager.Instance.EvaluateLevel();
                 break;
         }
         m_nestState = newState;
@@ -96,6 +107,12 @@ public class Nest : SingletonBase<Nest>
                         }
                     }
                     m_scoringWaitDuration.Reset(Mathf.Max(0.15f, m_scoringWaitDuration.TotalDuration() - 0.025f));
+                }
+                break;
+            case NestState.Waiting:
+                if (m_postScoreWaitDuration.UpdateCheck())
+                {
+                    SetState(NestState.Ending);
                 }
                 break;
         }
@@ -174,4 +191,5 @@ public enum NestState
     Placing,
     Scoring,
     Waiting,
+    Ending
 }
