@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,14 +12,19 @@ namespace lvl_0
         [Header("References")]
         [SerializeField] private Transform m_cardContainer;
         [SerializeField] private GameObject m_cardPrefab;
-        [SerializeField] private CardDeck m_cardDeck;
-        [SerializeField] private CardDeckConfig m_cardDeckConfig;
+        [SerializeField] private List<Decks> m_cardDecks;
         [SerializeField] private Button m_drawCardButton;
 
-        private List<Card> m_deck;
+        private Dictionary<EDeck, CardDeck> m_deckDictionary = new Dictionary<EDeck, CardDeck>();
+        private Dictionary<EDeck, CardDeckConfig> m_configDictionary = new Dictionary<EDeck, CardDeckConfig>();
+        
+        private List<Card> m_currentDeck;
+        private CardDeckConfig m_currentConfig;
+
         private List<Card> m_playersHand;
         List<GameObject> m_cardGameObjects;
         Dictionary<ECardType, int> m_cardTypeCounts = new Dictionary<ECardType, int>();
+        
         private const int k_maxCardsInHand = 5;
 
         private DeckManagerState m_state;
@@ -26,15 +32,17 @@ namespace lvl_0
         protected override void Awake()
 		{
             base.Awake();
-            m_deck = new List<Card>();
             m_playersHand = new List<Card>();
             m_cardGameObjects = new List<GameObject>();
-            m_cardTypeCounts = new Dictionary<ECardType, int>();
+            
+            foreach(var deck in m_cardDecks)
+            {
+                m_deckDictionary.Add(deck.CardDeck.DeckType, deck.CardDeck);
+                m_configDictionary.Add(deck.CardDeck.DeckType, deck.Config);
+            }
 
             // Register Events
             m_drawCardButton.onClick.AddListener(OnDrawCardClick);
-
-            InitCardDeck();
             SetState(DeckManagerState.PreGame);
         }
 
@@ -66,15 +74,18 @@ namespace lvl_0
             base.OnDestroy();
         }
 
-        private void InitCardDeck()
+        public void SetCardDeck(EDeck deckToUse)
 		{
-            if (m_cardDeck == null)
+            if (!m_deckDictionary.ContainsKey(deckToUse))
 			{
-				Debug.LogError("[CardDeckManager] Card Deck is null.");
+				Debug.LogError("[CardDeckManager] Card Deck type cannot be found in dictionary.");
 				return;
 			}
 
-            m_deck = m_cardDeck.GetCards();
+            m_currentDeck = m_deckDictionary[deckToUse].GetCards();
+            m_currentConfig = m_configDictionary[deckToUse];
+
+
         }
 
         public void DealHand()
@@ -90,7 +101,7 @@ namespace lvl_0
 
 		private void DealCardDeck(int numOfCards)
 		{
-            if (m_deck == null || m_deck.Count == 0)
+            if (m_currentDeck == null || m_currentDeck.Count == 0)
             {
                 Debug.LogError("[CardDeckManager] There are no cards in deck.");
                 return;
@@ -102,7 +113,9 @@ namespace lvl_0
                 return;
             }
 
-            ShuffleDeck(m_deck);
+            DestroyCards();
+
+            ShuffleDeck(m_currentDeck);
 
             m_playersHand = DrawCards(numOfCards);
 
@@ -113,7 +126,7 @@ namespace lvl_0
 		{
             for (int i = list.Count - 1; i > 0; i--)
 			{
-                int randomIndex = Random.Range(0, i + 1);
+                int randomIndex = UnityEngine.Random.Range(0, i + 1);
                 (list[i], list[randomIndex]) = (list[randomIndex], list[i]);
             }
         }
@@ -135,14 +148,14 @@ namespace lvl_0
 
             var cardsToRemove = new List<Card>();
             // Select cards but no more then max amount of certain types
-            foreach (var card in m_deck)
+            foreach (var card in m_currentDeck)
             {
                 if (pickedCards.Count >= numCards)
                 {
                     break;
                 }
 
-                int maxAllowed = m_cardDeckConfig.GetMaxForCardType(card.cardType);
+                int maxAllowed = m_currentConfig.GetMaxForCardType(card.cardType);
 
                 if (m_cardTypeCounts[card.cardType] < maxAllowed)
                 {
@@ -154,7 +167,7 @@ namespace lvl_0
 
             foreach (var card in cardsToRemove)
             {
-                m_deck.Remove(card);
+                m_currentDeck.Remove(card);
             }
 
             return pickedCards;
@@ -184,7 +197,7 @@ namespace lvl_0
 
         private void ClearDeck()
         {
-            m_deck = new List<Card>();
+            m_currentDeck = new List<Card>();
 
             // Set count for each Card Type to 0
             foreach (ECardType type in System.Enum.GetValues(typeof(ECardType)))
@@ -198,7 +211,7 @@ namespace lvl_0
             m_playersHand = GetPlayersHand();
 
             if (m_playersHand.Count < k_maxCardsInHand
-                && m_deck.Count > 0)
+                && m_currentDeck.Count > 0)
             {
                 Card newCard = DrawCard();
                 m_playersHand.Add(newCard);
@@ -235,5 +248,18 @@ namespace lvl_0
         PreGame,
         Dealing,
         Scoring
+    }
+
+    public enum EDeck
+    {
+        ItemDeck,
+        PersonDeck
+    }
+
+    [Serializable]
+    public struct Decks
+    {
+        public CardDeck CardDeck;
+        public CardDeckConfig Config;
     }
 }

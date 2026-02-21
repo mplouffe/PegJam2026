@@ -7,5 +7,6 @@ namespace lvl_0
         Pet = 2,
         Devices = 3,
         Blankets = 4,
+        Person = 5,
     }
 }

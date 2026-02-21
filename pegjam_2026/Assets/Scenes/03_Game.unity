@@ -293,8 +293,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_cardContainer: {fileID: 312153526}
   m_cardPrefab: {fileID: 5550105994702629294, guid: 93db3575d3c6b2047a72846508a87d8a, type: 3}
-  m_cardDeck: {fileID: 11400000, guid: 4c93a1211a54cdc489314c17db83e024, type: 2}
-  m_cardDeckConfig: {fileID: 11400000, guid: c5628ecb4395dcc44aed7f1c40bc38b7, type: 2}
+  m_cardDecks:
+  - CardDeck: {fileID: 11400000, guid: 4c93a1211a54cdc489314c17db83e024, type: 2}
+    Config: {fileID: 11400000, guid: c5628ecb4395dcc44aed7f1c40bc38b7, type: 2}
+  - CardDeck: {fileID: 11400000, guid: 91e82ec627d7fbc4eaf1ec05052d6b5a, type: 2}
+    Config: {fileID: 11400000, guid: 305c8f8fa15347c4f9bdb8263097d031, type: 2}
   m_drawCardButton: {fileID: 8065711668650260238}
 --- !u!1 &71051611
 GameObject:

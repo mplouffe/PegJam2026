@@ -92,6 +92,10 @@ public class Item : MonoBehaviour
         }
 
         ClearTiles();
+        if (ItemCard.cardType == ECardType.Person)
+        {
+            LevelManager.Instance.StartBuilding();
+        }
         return true;
     }
 

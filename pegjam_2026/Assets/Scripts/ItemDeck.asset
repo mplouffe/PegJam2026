@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 83c1f0968ac49944e8bef19908403abc, type: 3}
-  m_Name: CardDeck
+  m_Name: ItemDeck
   m_EditorClassIdentifier: 
   cardsMap:
   - internalDescription: Book

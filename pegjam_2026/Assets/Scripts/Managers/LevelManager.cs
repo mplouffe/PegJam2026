@@ -38,6 +38,11 @@ namespace lvl_0
         public void PickLevel(int pickedLevel)
         {
             m_activeLevel = m_levels[pickedLevel];
+            SetState(LevelManagerState.PlacingPerson);
+        }
+
+        public void StartBuilding()
+        {
             SetState(LevelManagerState.PlayingLevel);
         }
 
@@ -61,8 +66,14 @@ namespace lvl_0
                 case LevelManagerState.PickingLevel:
                     PopupsManager.Instance.ShowLevels(m_levels);
                 break;
+                case LevelManagerState.PlacingPerson:
+                    PopupsManager.Instance.ClearLevelInfo();
+                    CardDeckManager.Instance.SetCardDeck(EDeck.PersonDeck);
+                    CardDeckManager.Instance.DealHand();
+                    break;
                 case LevelManagerState.PlayingLevel:
                     PopupsManager.Instance.ClearLevelInfo();
+                    CardDeckManager.Instance.SetCardDeck(EDeck.ItemDeck);
                     CardDeckManager.Instance.DealHand();
                     break;
                 case LevelManagerState.EvaluatingLevel:
@@ -84,6 +95,7 @@ namespace lvl_0
     {
         Waiting,
         PickingLevel,
+        PlacingPerson,
         PlayingLevel,
         EvaluatingLevel,
         ResolvingLevel

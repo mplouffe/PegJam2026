@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ee49e3af98f35ee4d9117c7afa076c0c, type: 3}
-  m_Name: CardDeckConfig
+  m_Name: ItemDeckConfig
   m_EditorClassIdentifier: 
   cardTypeLimits:
   - cardType: 0

@@ -6,6 +6,7 @@ namespace lvl_0
     [CreateAssetMenu(fileName = "New Card Deck", menuName = "Cards/New Card Deck")]
     public class CardDeck : ScriptableObject
     {
+        public EDeck DeckType;
         public List<Card> cardsMap = new List<Card>();
 
         public List<Card> GetCards()
