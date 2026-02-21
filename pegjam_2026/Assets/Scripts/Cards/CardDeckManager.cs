@@ -1,5 +1,8 @@
+using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace lvl_0
 {
@@ -10,26 +13,40 @@ namespace lvl_0
         [SerializeField] private GameObject m_cardPrefab;
         [SerializeField] private CardDeck m_cardDeck;
         [SerializeField] private CardDeckConfig m_cardDeckConfig;
+        [SerializeField] private Button m_drawCardButton;
 
-        private List<Card> m_cards;
+        private List<Card> m_deck;
+        private List<Card> m_playersHand;
+        List<GameObject> m_cardGameObjects;
         Dictionary<ECardType, int> m_cardTypeCounts = new Dictionary<ECardType, int>();
+        private const int k_maxCardsInHand = 5;
 
         private void Awake()
 		{
-            m_cards = new List<Card>();
+            m_deck = new List<Card>();
+            m_playersHand = new List<Card>();
+            m_cardGameObjects = new List<GameObject>();
             m_cardTypeCounts = new Dictionary<ECardType, int>();
+
+            // Register Events
+            m_drawCardButton.onClick.AddListener(OnDrawCardClick);
 
             InitCardDeck();
 
-            // TO DO - call this on player action like "DRAW CARDS"
-            DealCardDeck(4);
+            DealCardDeck(k_maxCardsInHand);
         }
 
         private void Update()
 		{	
 		}
 
-		private void InitCardDeck()
+        private void OnDestroy()
+        {
+            // Unregister Events
+            m_drawCardButton.onClick.RemoveListener(OnDrawCardClick);
+        }
+
+        private void InitCardDeck()
 		{
             if (m_cardDeck == null)
 			{
@@ -37,13 +54,12 @@ namespace lvl_0
 				return;
 			}
 
-			m_cards = m_cardDeck.GetCards();
-            Debug.Log("CardDeckManager - InitCardDeck " + m_cards.Count);
+            m_deck = m_cardDeck.GetCards();
         }
 
 		public void DealCardDeck(int numOfCards)
 		{
-            if (m_cards == null || m_cards.Count == 0)
+            if (m_deck == null || m_deck.Count == 0)
             {
                 Debug.LogError("[CardDeckManager] There are no cards in deck.");
                 return;
@@ -55,12 +71,11 @@ namespace lvl_0
                 return;
             }
 
+            ShuffleDeck(m_deck);
 
-            ShuffleDeck(m_cards);
+            m_playersHand = DrawCards(numOfCards);
 
-            List<Card> hand = test(numOfCards);
-
-            InstantiateCards(hand);
+            InstantiateCards();
         }
 
 		private void ShuffleDeck(List<Card> list)
@@ -72,7 +87,12 @@ namespace lvl_0
             }
         }
 
-        private List<Card> test(int numCards)
+        private Card DrawCard()
+        {
+            return DrawCards(1).FirstOrDefault();
+        }
+
+        private List<Card> DrawCards(int numCards)
         {
             List<Card> pickedCards = new List<Card>();
 
@@ -82,8 +102,9 @@ namespace lvl_0
                 m_cardTypeCounts[type] = 0;
             }
 
+            var cardsToRemove = new List<Card>();
             // Select cards but no more then max amount of certain types
-            foreach (var card in m_cards)
+            foreach (var card in m_deck)
             {
                 if (pickedCards.Count >= numCards)
                 {
@@ -95,22 +116,86 @@ namespace lvl_0
                 if (m_cardTypeCounts[card.cardType] < maxAllowed)
                 {
                     pickedCards.Add(card);
+                    cardsToRemove.Add(card);
                     m_cardTypeCounts[card.cardType]++;
                 }
+            }
+
+            foreach (var card in cardsToRemove)
+            {
+                m_deck.Remove(card);
             }
 
             return pickedCards;
         }
 
-        private void InstantiateCards(List<Card> dealtHand)
+        private void InstantiateCards()
         {
-            foreach (var dealtCard in dealtHand)
+            m_cardGameObjects = new List<GameObject>();
+            foreach (var dealtCard in m_playersHand)
             {
                 GameObject newCardObj = Instantiate(m_cardPrefab, m_cardContainer);
                 CardManager card = newCardObj.GetComponent<CardManager>();
 
-                card.InitCard(dealtCard.cardValue, dealtCard.cardDesciption, dealtCard.cardSprite, dealtCard.itemShape);
+                m_cardGameObjects.Add(newCardObj);
+                card.InitCard(dealtCard);
             }
+        }
+
+        private void DestroyCards()
+        {
+            for (var i = 0; i< m_cardGameObjects.Count; i++)
+            {
+                Destroy(m_cardGameObjects[i]); 
+            }
+            m_cardGameObjects.Clear();
+        }
+
+        private void ClearDeck()
+        {
+            m_deck = new List<Card>();
+
+            // Set count for each Card Type to 0
+            foreach (ECardType type in System.Enum.GetValues(typeof(ECardType)))
+            {
+                m_cardTypeCounts[type] = 0;
+            }
+        }
+
+        void OnDrawCardClick()
+        {
+            m_playersHand = GetPlayersHand();
+
+            if (m_playersHand.Count < k_maxCardsInHand
+                && m_deck.Count > 0)
+            {
+                Card newCard = DrawCard();
+                m_playersHand.Add(newCard);
+                
+                RefreshCards();
+                m_playersHand = GetPlayersHand();
+            }
+        }
+
+        private void RefreshCards()
+        {
+            DestroyCards();
+            InstantiateCards();
+        }
+
+        private List<Card> GetPlayersHand()
+        {
+            List<Card> playersHand = new List<Card>();
+            for (var i = 0; i < m_cardGameObjects.Count; i++)
+            {
+                if (m_cardGameObjects[i] != null)
+                {
+                    CardManager cardManager = m_cardGameObjects[i].GetComponent<CardManager>();
+                    Card card = cardManager.Card;
+                    playersHand.Add(card);
+                }
+            }
+            return playersHand;
         }
     }
 }

@@ -16,6 +16,7 @@ namespace lvl_0
         [SerializeField] private Image m_itemImage;
 
         [Header("Card Data")]
+        [SerializeField] private Card m_card;
         [SerializeField] private int m_cardValue;
         [SerializeField] private string m_cardDescription;
         [SerializeField] private Sprite m_cardSprite;
@@ -23,6 +24,7 @@ namespace lvl_0
         [SerializeField]
         private Item m_itemPrefab;
 
+        public Card Card => m_card;
         public int CardValue => m_cardValue;
         public string CardDescription => m_cardDescription;
         public Sprite CardSprite => m_cardSprite;
@@ -34,6 +36,11 @@ namespace lvl_0
         private void Awake()
         {
             RefreshAll();
+        }
+
+        public CardState GetState()
+        {
+            return m_state;
         }
 
         public void SetState(CardState newState)
@@ -53,12 +60,13 @@ namespace lvl_0
             m_state = newState;
         }
 
-        public void InitCard(int value, string desciption, Sprite itemSprite, BoolGrid itemShape)
+        public void InitCard(Card card)
         {
-            m_cardValue = value;
-            m_cardDescription = desciption;
-            m_cardSprite = itemSprite;
-            m_itemShape = itemShape;
+            m_card = card;
+            m_cardValue = card.cardValue;
+            m_cardDescription = card.cardDesciption;
+            m_cardSprite = card.cardSprite;
+            m_itemShape = card.itemShape;
 
             RefreshAll();
             SetState(CardState.Dealt);
