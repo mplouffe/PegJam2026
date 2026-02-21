@@ -10,7 +10,7 @@ namespace lvl_0
 
         public List<Card> GetCards()
         {
-            return cardsMap;
+            return new List<Card>(cardsMap);
         }
     }
 }
