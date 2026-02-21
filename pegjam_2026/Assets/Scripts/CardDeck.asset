@@ -22,9 +22,9 @@ MonoBehaviour:
       size: 1
       cells: 01
     cardColor: {r: 0.19339621, g: 0.2572656, b: 1, a: 1}
-  - internalDescription: Chips
+  - internalDescription: Popcorn
     cardDesciption: Chips
-    cardSprite: {fileID: 21300000, guid: 4e6a77438caeb28499843fb5f255bde1, type: 3}
+    cardSprite: {fileID: 21300000, guid: 0dfb98aa2ba9bda4d9ee0d836e1e43f5, type: 3}
     cardValue: 2
     cardType: 1
     itemShape:
@@ -33,7 +33,7 @@ MonoBehaviour:
     cardColor: {r: 1, g: 0.91322035, b: 0.3537736, a: 1}
   - internalDescription: Soda
     cardDesciption: Soda
-    cardSprite: {fileID: 21300000, guid: 4e6a77438caeb28499843fb5f255bde1, type: 3}
+    cardSprite: {fileID: 21300000, guid: 76c88cf313ed0f545b2a1b7bc6197ac0, type: 3}
     cardValue: 3
     cardType: 1
     itemShape:
