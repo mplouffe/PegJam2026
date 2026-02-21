@@ -3,8 +3,9 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
+using TMPro;
 using UnityEngine;
-using UnityEngine.UIElements;
+using UnityEngine.UI;
 using static UnityEngine.Rendering.DebugUI.Table;
 
 public class Nest : MonoBehaviour
@@ -24,6 +25,12 @@ public class Nest : MonoBehaviour
     [SerializeField]
     private Duration m_scoringWaitDuration;
 
+    [SerializeField]
+    private Button m_scoreNestButton;
+
+    [SerializeField]
+    private TextMeshProUGUI m_scoreField;
+
     private NestState m_nestState;
 
     private Vector2Int m_scoringTracker = Vector2Int.zero;
@@ -33,12 +40,30 @@ public class Nest : MonoBehaviour
 
     private Dictionary<ECardType, float> m_scoreTypeMultipliers = new Dictionary<ECardType, float>();
 
+    private void OnDestroy()
+    {
+        m_scoreNestButton.onClick.RemoveListener(OnScoreNestClicked);
+    }
+
+    public void OnScoreNestClicked()
+    {
+        if (m_nestState == NestState.Placing)
+        {
+            SetState(NestState.Scoring);
+        }
+    }
+
     private void SetState(NestState newState)
     {
+        if (m_nestState == newState) return;
         switch (newState)
         {
             case NestState.Scoring:
-                m_scoringWaitDuration.Reset();
+                m_scoringWaitDuration.Reset(0.5f);
+                m_scoringTracker = new Vector2Int(m_nestHeight-1, m_nestWidth-1);
+                break;
+            case NestState.Placing:
+                m_scoreNestButton.gameObject.SetActive(true);
                 break;
         }
         m_nestState = newState;
@@ -54,19 +79,20 @@ public class Nest : MonoBehaviour
                     var score = m_nest[m_scoringTracker.x][m_scoringTracker.y].ScoreTile();
                     var type = m_nest[m_scoringTracker.x][m_scoringTracker.y].GetTileType();
                     m_finalScore += score * m_scoreTypeMultipliers[type];
-                    m_scoreTypeMultipliers[type] += m_scoreMultiplerIncrement;
+                    m_scoreField.text = m_finalScore.ToString();
+                    if (type != ECardType.Misc) m_scoreTypeMultipliers[type] += m_scoreMultiplerIncrement;
 
-                    m_scoringTracker.y += 1;
-                    if (m_scoringTracker.y >= m_nestWidth)
+                    m_scoringTracker.y -= 1;
+                    if (m_scoringTracker.y < 0)
                     {
-                        m_scoringTracker.y = 0;
-                        m_scoringTracker.x += 1;
-                        if (m_scoringTracker.x >= m_nestHeight)
+                        m_scoringTracker.y = m_nestWidth-1;
+                        m_scoringTracker.x -= 1;
+                        if (m_scoringTracker.x < 0)
                         {
                             SetState(NestState.Waiting);
                         }
                     }
-                    m_scoringWaitDuration.Reset();
+                    m_scoringWaitDuration.Reset(Mathf.Max(0.15f, m_scoringWaitDuration.TotalDuration() - 0.025f));
                 }
                 break;
         }
@@ -88,6 +114,9 @@ public class Nest : MonoBehaviour
         {
             m_scoreTypeMultipliers.Add(cardType, 1.0f);
         }
+
+        m_scoreNestButton.onClick.AddListener(OnScoreNestClicked);
+        m_scoreNestButton.gameObject.SetActive(false);
     }
 
     public Vector3 GetCellWorldPosition(int col, int row)
@@ -121,20 +150,23 @@ public class Nest : MonoBehaviour
         return !m_nest[row][col].IsOccupied;
     }
 
-    public bool PlacePiece(int col, int row)
+    public bool PlacePiece(int col, int row, Card card)
     {
         if (col < 0 || col >= m_nestWidth || row < 0 || row >= m_nestHeight)
             return false;
 
         if (m_nest[row][col].IsOccupied) return false;
 
-        m_nest[row][col].SetState(NestTileState.Occupied);
+        m_nest[row][col].Occupy(card);
+
+        if (m_nestState == NestState.Empty) SetState(NestState.Placing);
         return true;
     }
 }
 
 public enum NestState
 {
+    Empty,
     Placing,
     Scoring,
     Waiting,

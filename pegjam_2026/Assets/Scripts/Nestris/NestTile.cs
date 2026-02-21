@@ -13,9 +13,6 @@ public class NestTile : MonoBehaviour
     private Color m_emptyColor = Color.white;
 
     [SerializeField]
-    private Color m_occupiedColor = Color.blue;
-
-    [SerializeField]
     private Duration m_scoringDuration;
 
     [SerializeField]
@@ -33,12 +30,12 @@ public class NestTile : MonoBehaviour
                 if (m_scoringDuration.UpdateCheck())
                 {
                     transform.localScale = Vector3.one;
-                    SetState(NestTileState.Occupied);
+                    SetState(NestTileState.Empty);
                 }
                 else
                 {
                     var currentScale = Mathf.Lerp(m_popScale, 1, m_scoringDuration.CurvedDelta());
-                    transform.localScale = new Vector3(currentScale, 1, currentScale);
+                    transform.localScale = new Vector3(currentScale, currentScale,1);
                 }
                 break;
         }
@@ -53,7 +50,7 @@ public class NestTile : MonoBehaviour
     public int ScoreTile()
     {
         SetState(NestTileState.Scoring);
-        return m_card.cardValue;
+        return m_card?.cardValue ?? 0;
     }
 
     public ECardType GetTileType()
@@ -69,7 +66,7 @@ public class NestTile : MonoBehaviour
                 m_sprite.color = m_emptyColor;
                 break;
             case NestTileState.Occupied:
-                m_sprite.color = m_occupiedColor;
+                m_sprite.color = m_card.cardColor;
                 break;
         }
         State = newState;

@@ -1,3 +1,4 @@
+using lvl_0;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -6,6 +7,8 @@ public class Item : MonoBehaviour
 {
     
     public BoolGrid ItemShape = new BoolGrid();
+
+    public Card ItemCard;
 
     [SerializeField]
     private ItemTile m_tilePrefab;
@@ -80,7 +83,7 @@ public class Item : MonoBehaviour
             int boardRow = boardAnchor.y - r;
 
 
-            bool valid = board != null && board.PlacePiece(boardCol, boardRow);
+            bool valid = board != null && board.PlacePiece(boardCol, boardRow, ItemCard);
             if (!valid)
             {
                 Debug.LogError("Error! Trying to palce invalid piece");

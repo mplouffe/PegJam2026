@@ -8,13 +8,7 @@ public class ItemTile : MonoBehaviour
     private SpriteRenderer m_spriteRenderer;
 
     [SerializeField]
-    private Color m_validActiveColor = Color.green;
-
-    [SerializeField]
     private Color m_invalidActiveColor = Color.red;
-
-    [SerializeField]
-    private Color m_inactiveColor = Color.grey;
 
     private Item m_parentItem;
 
@@ -29,11 +23,8 @@ public class ItemTile : MonoBehaviour
     {
         switch (newState)
         {
-            case ItemTileState.Inactive:
-                m_spriteRenderer.color = m_inactiveColor;
-                break;
             case ItemTileState.ActiveValid:
-                m_spriteRenderer.color = m_validActiveColor;
+                m_spriteRenderer.color = m_parentItem.ItemCard.cardColor;
                 break;
             case ItemTileState.ActiveInvalid:
                 m_spriteRenderer.color = m_invalidActiveColor;
