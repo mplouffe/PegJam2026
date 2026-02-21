@@ -67,15 +67,15 @@ MonoBehaviour:
       m_Calls: []
   m_text: DESCRIPTION TEXT
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 8323d193f0303994bbfe2e0a551d6b3a, type: 2}
+  m_sharedMaterial: {fileID: 5749719764652972054, guid: 8323d193f0303994bbfe2e0a551d6b3a, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4289602312
-  m_fontColor: {r: 0.03137255, g: 0.13725491, b: 0.68235296, a: 1}
+    rgba: 4280032284
+  m_fontColor: {r: 0.10980392, g: 0.10980392, b: 0.10980392, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -92,8 +92,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 14
-  m_fontSizeBase: 14
+  m_fontSize: 18
+  m_fontSizeBase: 18
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -276,15 +276,15 @@ MonoBehaviour:
       m_Calls: []
   m_text: 1
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 8323d193f0303994bbfe2e0a551d6b3a, type: 2}
+  m_sharedMaterial: {fileID: 5749719764652972054, guid: 8323d193f0303994bbfe2e0a551d6b3a, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4289536775
-  m_fontColor: {r: 0.028835872, g: 0.13596235, b: 0.6792453, a: 1}
+    rgba: 4280032284
+  m_fontColor: {r: 0.10980392, g: 0.10980392, b: 0.10980392, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -407,6 +407,16 @@ MonoBehaviour:
   m_itemValue: {fileID: 8024487539557791282}
   m_backgroundImage: {fileID: 1164770232408458733}
   m_itemImage: {fileID: 812459541720385311}
+  m_card:
+    internalDescription: 
+    cardDesciption: 
+    cardSprite: {fileID: 0}
+    cardValue: 0
+    cardType: 0
+    itemShape:
+      size: 4
+      cells: 
+    cardColor: {r: 0, g: 0, b: 0, a: 0}
   m_cardValue: 0
   m_cardDescription: 
   m_cardSprite: {fileID: 0}

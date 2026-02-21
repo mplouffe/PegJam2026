@@ -1293,10 +1293,10 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Score
+  m_text: 'Score:'
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 5737fe838c730724c83884d12830ad6f, type: 2}
-  m_sharedMaterial: {fileID: 5270436892232453363, guid: 5737fe838c730724c83884d12830ad6f, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 8323d193f0303994bbfe2e0a551d6b3a, type: 2}
+  m_sharedMaterial: {fileID: 5749719764652972054, guid: 8323d193f0303994bbfe2e0a551d6b3a, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -1770,8 +1770,8 @@ MonoBehaviour:
 
 '
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 5737fe838c730724c83884d12830ad6f, type: 2}
-  m_sharedMaterial: {fileID: 5270436892232453363, guid: 5737fe838c730724c83884d12830ad6f, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 8323d193f0303994bbfe2e0a551d6b3a, type: 2}
+  m_sharedMaterial: {fileID: 5749719764652972054, guid: 8323d193f0303994bbfe2e0a551d6b3a, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -1904,15 +1904,15 @@ MonoBehaviour:
       m_Calls: []
   m_text: SCORE NEST
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 5737fe838c730724c83884d12830ad6f, type: 2}
-  m_sharedMaterial: {fileID: 5270436892232453363, guid: 5737fe838c730724c83884d12830ad6f, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 8323d193f0303994bbfe2e0a551d6b3a, type: 2}
+  m_sharedMaterial: {fileID: 5749719764652972054, guid: 8323d193f0303994bbfe2e0a551d6b3a, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4278190080
-  m_fontColor: {r: 0, g: 0, b: 0, a: 1}
+    rgba: 4280032284
+  m_fontColor: {r: 0.10980392, g: 0.10980392, b: 0.10980392, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:

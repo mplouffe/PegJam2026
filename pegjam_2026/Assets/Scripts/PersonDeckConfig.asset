@@ -13,13 +13,5 @@ MonoBehaviour:
   m_Name: PersonDeckConfig
   m_EditorClassIdentifier: 
   cardTypeLimits:
-  - cardType: 0
+  - cardType: 5
     maxAllowed: 9999
-  - cardType: 1
-    maxAllowed: 3
-  - cardType: 2
-    maxAllowed: 2
-  - cardType: 3
-    maxAllowed: 2
-  - cardType: 4
-    maxAllowed: 1
