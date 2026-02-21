@@ -6,7 +6,7 @@ using UnityEngine.UI;
 
 namespace lvl_0
 {
-	public class CardDeckManager : MonoBehaviour
+	public class CardDeckManager : SingletonBase<CardDeckManager>
 	{
         [Header("References")]
         [SerializeField] private Transform m_cardContainer;
@@ -21,8 +21,11 @@ namespace lvl_0
         Dictionary<ECardType, int> m_cardTypeCounts = new Dictionary<ECardType, int>();
         private const int k_maxCardsInHand = 5;
 
-        private void Awake()
+        private DeckManagerState m_state;
+
+        protected override void Awake()
 		{
+            base.Awake();
             m_deck = new List<Card>();
             m_playersHand = new List<Card>();
             m_cardGameObjects = new List<GameObject>();
@@ -32,18 +35,34 @@ namespace lvl_0
             m_drawCardButton.onClick.AddListener(OnDrawCardClick);
 
             InitCardDeck();
-
-            DealCardDeck(k_maxCardsInHand);
+            SetState(DeckManagerState.PreGame);
         }
 
-        private void Update()
-		{	
-		}
+        private void SetState(DeckManagerState newState)
+        {
+            switch(newState)
+            {
+                case DeckManagerState.PreGame:
+                    m_drawCardButton.gameObject.SetActive(false);
+                    m_cardContainer.gameObject.SetActive(false);
+                    break;
+                case DeckManagerState.Dealing:
+                    m_drawCardButton.gameObject.SetActive(true);
+                    m_cardContainer.gameObject.SetActive(true);
+                    break;
+                case DeckManagerState.Scoring:
+                    m_drawCardButton.gameObject.SetActive(false);
+                    break;
+            }
 
-        private void OnDestroy()
+            m_state = newState;
+        }
+
+        protected override void OnDestroy()
         {
             // Unregister Events
             m_drawCardButton.onClick.RemoveListener(OnDrawCardClick);
+            base.OnDestroy();
         }
 
         private void InitCardDeck()
@@ -57,7 +76,18 @@ namespace lvl_0
             m_deck = m_cardDeck.GetCards();
         }
 
-		public void DealCardDeck(int numOfCards)
+        public void DealHand()
+        {
+            SetState(DeckManagerState.Dealing);
+            DealCardDeck(k_maxCardsInHand);
+        }
+
+        public void StopDealing()
+        {
+            SetState(DeckManagerState.Scoring);
+        }
+
+		private void DealCardDeck(int numOfCards)
 		{
             if (m_deck == null || m_deck.Count == 0)
             {
@@ -197,5 +227,12 @@ namespace lvl_0
             }
             return playersHand;
         }
+    }
+
+    public enum DeckManagerState
+    {
+        PreGame,
+        Dealing,
+        Scoring
     }
 }

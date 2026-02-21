@@ -8,7 +8,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using static UnityEngine.Rendering.DebugUI.Table;
 
-public class Nest : MonoBehaviour
+public class Nest : SingletonBase<Nest>
 {
     [SerializeField]
     private NestTile m_nestTilePrefab;
@@ -31,6 +31,8 @@ public class Nest : MonoBehaviour
     [SerializeField]
     private TextMeshProUGUI m_scoreField;
 
+    public float Score { get { return m_finalScore; } }
+
     private NestState m_nestState;
 
     private Vector2Int m_scoringTracker = Vector2Int.zero;
@@ -40,9 +42,10 @@ public class Nest : MonoBehaviour
 
     private Dictionary<ECardType, float> m_scoreTypeMultipliers = new Dictionary<ECardType, float>();
 
-    private void OnDestroy()
+    protected override void OnDestroy()
     {
         m_scoreNestButton.onClick.RemoveListener(OnScoreNestClicked);
+        base.OnDestroy();
     }
 
     public void OnScoreNestClicked()
@@ -98,8 +101,9 @@ public class Nest : MonoBehaviour
         }
     }
 
-    private void Awake()
+    protected override void Awake()
     {
+        base.Awake();
         for(int i = 0; i < m_nestHeight; i++)
         {
             m_nest.Add(new List<NestTile>());

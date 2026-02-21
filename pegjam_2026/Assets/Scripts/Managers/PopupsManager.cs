@@ -11,25 +11,19 @@ public class PopupsManager : MonoBehaviour
     private CanvasGroup m_pausedCanvasGroup;
 
     [SerializeField]
-    private CanvasGroup m_gameOverCanvasGroup;
+    private CanvasGroup m_levelPassedCanvasGroup;
 
     [SerializeField]
-    private CanvasGroup m_getReadyCanvasGroup;
+    private CanvasGroup m_levelFailedCanvasGroup;
 
     [SerializeField]
-    private CanvasGroup m_escapedCanvasGroup;
+    private CanvasGroup m_levelSelectionCanvsGroup;
 
     [SerializeField]
-    private CanvasGroup m_levelStartGroup;
+    private LevelCard m_levelCardPrefab;
 
     [SerializeField]
-    private TextMeshProUGUI m_levelStartText;
-
-    [SerializeField]
-    private CanvasGroup m_levelEndingGroup;
-
-    [SerializeField]
-    private CanvasGroup m_pollenatingGroup;
+    private Transform m_levelCardContainer;
 
     private void Awake()
     {
@@ -41,51 +35,43 @@ public class PopupsManager : MonoBehaviour
         Instance = this;
 
         m_pausedCanvasGroup.alpha = 0;
-        m_gameOverCanvasGroup.alpha = 0;
-        m_getReadyCanvasGroup.alpha = 0;
-        m_escapedCanvasGroup.alpha = 0;
+        m_pausedCanvasGroup.blocksRaycasts = false;
+        m_levelPassedCanvasGroup.alpha = 0;
+        m_levelPassedCanvasGroup.blocksRaycasts = false;
+        m_levelFailedCanvasGroup.alpha = 0;
+        m_levelFailedCanvasGroup.blocksRaycasts = false;
+        m_levelSelectionCanvsGroup.alpha = 0;
+        m_levelFailedCanvasGroup.blocksRaycasts = false;
     }
 
-    public void Pause(bool pause)
+    public void LevelPassed(Level passedLevel)
     {
-        m_pausedCanvasGroup.alpha = pause ? 1 : 0;
+        m_levelPassedCanvasGroup.alpha = 1;
     }
 
-    public void GameOver(bool gameOver)
+    public void LevelFailed(Level failedLevel)
     {
-        m_gameOverCanvasGroup.alpha = gameOver ? 1 : 0;
+        m_levelFailedCanvasGroup.alpha = 1;
     }
 
-    public void GetReady(bool getReady)
+    public void ShowLevels(List<Level> levels)
     {
-        m_getReadyCanvasGroup.alpha = getReady ? 1 : 0;
-    }
-
-    public void Escaped(bool escaped)
-    {
-        m_escapedCanvasGroup.alpha = escaped ? 1 : 0;
-    }
-
-    public void LevelStart(bool levelStarting, int level = 0)
-    {
-        m_levelStartGroup.alpha = levelStarting ? 1 : 0;
-        if (level > 0)
+        m_levelSelectionCanvsGroup.alpha = 1;
+        m_levelSelectionCanvsGroup.blocksRaycasts = true;
+        int i = 0;
+        foreach (var level in levels)
         {
-            m_levelStartText.text = $"Level {level}";
-        }
-        else
-        {
-            Debug.Log("called with >= 0");
+            var levelCard = Instantiate(m_levelCardPrefab, m_levelCardContainer);
+            levelCard.SetLevel(level, i);
+            i++;
         }
     }
 
-    public void LevelEnd(bool levelEnding)
+    public void ClearLevels()
     {
-        m_levelEndingGroup.alpha = levelEnding ? 1 : 0;
-    }
-
-    public void Pollenating(bool pollenating)
-    {
-        m_pollenatingGroup.alpha = pollenating ? 1 : 0;
+        m_levelSelectionCanvsGroup.alpha = 0;
+        m_levelSelectionCanvsGroup.blocksRaycasts = false;
+        foreach (Transform child in m_levelCardContainer)
+            Destroy(child.gameObject);
     }
 }
