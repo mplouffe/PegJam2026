@@ -1,3 +1,4 @@
+using lvl_0;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -14,7 +15,51 @@ public class NestTile : MonoBehaviour
     [SerializeField]
     private Color m_occupiedColor = Color.blue;
 
+    [SerializeField]
+    private Duration m_scoringDuration;
+
+    [SerializeField]
+    private float m_popScale;
+
+    private Card m_card = null;
+
     public NestTileState State { get; private set; }
+
+    private void Update()
+    {
+        switch (State)
+        {
+            case NestTileState.Scoring:
+                if (m_scoringDuration.UpdateCheck())
+                {
+                    transform.localScale = Vector3.one;
+                    SetState(NestTileState.Occupied);
+                }
+                else
+                {
+                    var currentScale = Mathf.Lerp(m_popScale, 1, m_scoringDuration.CurvedDelta());
+                    transform.localScale = new Vector3(currentScale, 1, currentScale);
+                }
+                break;
+        }
+    }
+
+    public void Occupy(Card card)
+    {
+        m_card = card;
+        SetState(NestTileState.Occupied);
+    }
+
+    public int ScoreTile()
+    {
+        SetState(NestTileState.Scoring);
+        return m_card.cardValue;
+    }
+
+    public ECardType GetTileType()
+    {
+        return m_card?.cardType ?? ECardType.Misc;
+    }
 
     public void SetState(NestTileState newState)
     {
@@ -37,4 +82,5 @@ public enum NestTileState
 {
     Empty,
     Occupied,
+    Scoring,
 }

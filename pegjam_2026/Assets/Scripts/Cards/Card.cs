@@ -8,8 +8,8 @@ namespace lvl_0
     {
         public string internalDescription;
         public string cardDesciption;
-        public int cardValue;
         public Sprite cardSprite;
+        public int cardValue;
         public ECardType cardType;
         public BoolGrid itemShape;
     }
