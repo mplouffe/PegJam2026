@@ -58,23 +58,23 @@ MonoBehaviour:
       size: 1
       cells: 01
     cardColor: {r: 0.32941177, g: 0.8235294, b: 0.4117647, a: 1}
-  - internalDescription: Cat
-    cardDesciption: Cat
-    cardSprite: {fileID: 21300000, guid: 30864edcc433ad74e9cfd429f6524f15, type: 3}
-    cardValue: 8
+  - internalDescription: Shiba
+    cardDesciption: Shiba
+    cardSprite: {fileID: 21300000, guid: 29ae0d0ea94cf8c438d93cf89b6d5ea2, type: 3}
+    cardValue: 5
     cardType: 2
     itemShape:
       size: 2
-      cells: 01010101
+      cells: 00010101
     cardColor: {r: 0.8392157, g: 0.54509807, b: 1, a: 1}
-  - internalDescription: Heated Blanket
-    cardDesciption: Heated Blanket
-    cardSprite: {fileID: 21300000, guid: 35f08bd7fa88d484f929109bbfe25807, type: 3}
-    cardValue: 9
-    cardType: 4
+  - internalDescription: Chacuterie
+    cardDesciption: Chacuterie
+    cardSprite: {fileID: 21300000, guid: 09b5bf495d850c44784c0383581e34b6, type: 3}
+    cardValue: 3
+    cardType: 1
     itemShape:
-      size: 3
-      cells: 010000010100010000
+      size: 2
+      cells: 01010101
     cardColor: {r: 1, g: 0.3443396, b: 0.3443396, a: 1}
   - internalDescription: Fuzzy Blanket
     cardDesciption: Fuzzy Blanket
