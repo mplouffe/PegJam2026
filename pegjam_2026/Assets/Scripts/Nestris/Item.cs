@@ -13,11 +13,9 @@ public class Item : MonoBehaviour
     public bool Locked = true;
 
     private Dictionary<Vector2Int, ItemTile> m_tiles = new Dictionary<Vector2Int, ItemTile>();
-    private Vector3 m_originalPosition = Vector3.zero;
 
     private void Awake()
     {
-        m_originalPosition = transform.position;
         BuildVisualization();
     }
 
@@ -32,7 +30,6 @@ public class Item : MonoBehaviour
                 if (ItemShape.Get(i,j))
                 {
                     var tile = Instantiate(m_tilePrefab, new Vector3(j + transform.position.x, transform.position.y - i, 0), Quaternion.identity, transform);
-                    tile.SetState(ItemTileState.Inactive);
                     m_tiles.Add(new Vector2Int(j, i), tile);
                 }
             }
@@ -44,15 +41,6 @@ public class Item : MonoBehaviour
         foreach (var tile in m_tiles.Values)
             Destroy(tile.gameObject);
         m_tiles.Clear();
-    }
-
-    public void ReturnToSender()
-    {
-        foreach(var kvp in m_tiles)
-        {
-            kvp.Value.SetState(ItemTileState.Inactive);
-        }
-        transform.position = m_originalPosition;
     }
 
     public bool ValidateAgainstBoard(Vector2Int boardAnchor, Nest board)
@@ -102,5 +90,11 @@ public class Item : MonoBehaviour
 
         ClearTiles();
         return true;
+    }
+
+    public void Rotate()
+    {
+        ItemShape.RotateClockwise();
+        BuildVisualization();
     }
 }
