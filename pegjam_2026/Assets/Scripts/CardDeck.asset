@@ -15,7 +15,7 @@ MonoBehaviour:
   cardsMap:
   - internalDescription: Book
     cardDesciption: Book
-    cardSprite: {fileID: 21300000, guid: 4e6a77438caeb28499843fb5f255bde1, type: 3}
+    cardSprite: {fileID: 21300000, guid: 6eb9bf5b779597a4db87cb712aae8b8a, type: 3}
     cardValue: 1
     cardType: 0
     itemShape:
@@ -40,6 +40,15 @@ MonoBehaviour:
       size: 1
       cells: 01
     cardColor: {r: 1, g: 0.9137255, b: 0.3529412, a: 1}
+  - internalDescription: Chips and Salsa - 2s
+    cardDesciption: Chips And Salsa
+    cardSprite: {fileID: 21300000, guid: 868a626fc8701914e837a5dfbddeb953, type: 3}
+    cardValue: 3
+    cardType: 1
+    itemShape:
+      size: 2
+      cells: 01010000
+    cardColor: {r: 1, g: 0.34509805, b: 0.34509805, a: 1}
   - internalDescription: iPhone
     cardDesciption: iPhone
     cardSprite: {fileID: 21300000, guid: 563717e3d0cccb24d9f234f6641f4fad, type: 3}
