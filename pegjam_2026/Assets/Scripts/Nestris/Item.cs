@@ -55,7 +55,7 @@ public class Item : MonoBehaviour
         float itemVisualPosXOffset = ((float)numOfCols / 2) - 0.5f;
         float itemVisualPosYOffset = ((float)numOfRows / 2) - 0.5f;
 
-        Vector3 newPos = new Vector3(itemVisualPosXOffset, itemVisualPosYOffset, 0);
+        Vector3 newPos = new Vector3(itemVisualPosXOffset, -itemVisualPosYOffset, 0);
         itemVisual.transform.SetPositionAndRotation(newPos, itemVisual.transform.rotation);
     }
 
