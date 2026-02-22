@@ -22,7 +22,7 @@ MonoBehaviour:
     itemShape:
       size: 1
       cells: 01
-    cardColor: {r: 1, g: 0.91322035, b: 0.3537736, a: 1}
+    cardColor: {r: 0.8862745, g: 0.7647059, b: 0.5254902, a: 1}
   - internalDescription: Soda - 1s
     cardDesciption: Soda
     cardSprite: {fileID: 21300000, guid: 76c88cf313ed0f545b2a1b7bc6197ac0, type: 3}
@@ -31,7 +31,7 @@ MonoBehaviour:
     itemShape:
       size: 1
       cells: 01
-    cardColor: {r: 1, g: 0.9137255, b: 0.3529412, a: 1}
+    cardColor: {r: 0.69803923, g: 0.7607843, b: 0.65882355, a: 1}
   - internalDescription: Chips and Salsa - 2s
     cardDesciption: Chips And Salsa
     cardSprite: {fileID: 21300000, guid: 868a626fc8701914e837a5dfbddeb953, type: 3}
@@ -40,7 +40,7 @@ MonoBehaviour:
     itemShape:
       size: 2
       cells: 01010000
-    cardColor: {r: 1, g: 0.34509805, b: 0.34509805, a: 1}
+    cardColor: {r: 0.49411765, g: 0.6, b: 0.6627451, a: 1}
   - internalDescription: iPhone
     cardDesciption: iPhone
     cardSprite: {fileID: 21300000, guid: 563717e3d0cccb24d9f234f6641f4fad, type: 3}
@@ -49,7 +49,7 @@ MonoBehaviour:
     itemShape:
       size: 1
       cells: 01
-    cardColor: {r: 0.32907617, g: 0.8207547, b: 0.41134712, a: 1}
+    cardColor: {r: 0.8862745, g: 0.7647059, b: 0.5254902, a: 1}
   - internalDescription: iPad
     cardDesciption: iPad
     cardSprite: {fileID: 21300000, guid: 4e6a77438caeb28499843fb5f255bde1, type: 3}
@@ -58,31 +58,49 @@ MonoBehaviour:
     itemShape:
       size: 1
       cells: 01
-    cardColor: {r: 0.32941177, g: 0.8235294, b: 0.4117647, a: 1}
-  - internalDescription: Shiba
-    cardDesciption: Shiba
-    cardSprite: {fileID: 21300000, guid: 29ae0d0ea94cf8c438d93cf89b6d5ea2, type: 3}
-    cardValue: 5
-    cardType: 2
-    itemShape:
-      size: 2
-      cells: 00010101
-    cardColor: {r: 0.8392157, g: 0.54509807, b: 1, a: 1}
-  - internalDescription: Chacuterie
-    cardDesciption: Chacuterie
+    cardColor: {r: 0.49411765, g: 0.6, b: 0.6627451, a: 1}
+  - internalDescription: Chatcuterie
+    cardDesciption: Chatcuterie
     cardSprite: {fileID: 21300000, guid: 09b5bf495d850c44784c0383581e34b6, type: 3}
-    cardValue: 3
+    cardValue: 4
     cardType: 1
     itemShape:
       size: 2
       cells: 01010101
-    cardColor: {r: 1, g: 0.3443396, b: 0.3443396, a: 1}
-  - internalDescription: Fuzzy Blanket
-    cardDesciption: Fuzzy Blanket
-    cardSprite: {fileID: 21300000, guid: c9d296b3c7db09344b9e4e25d689b6da, type: 3}
-    cardValue: 10
-    cardType: 4
+    cardColor: {r: 0.69803923, g: 0.7607843, b: 0.65882355, a: 1}
+  - internalDescription: Cat
+    cardDesciption: Cozy Cat
+    cardSprite: {fileID: 21300000, guid: 3d6c6cba1d36ee44f82312309b732b25, type: 3}
+    cardValue: 5
+    cardType: 2
+    itemShape:
+      size: 2
+      cells: 01010101
+    cardColor: {r: 0.89411765, g: 0.77254903, b: 0.5294118, a: 1}
+  - internalDescription: Sleepy Pup
+    cardDesciption: Sleepy Pup
+    cardSprite: {fileID: 21300000, guid: 3813844388cca13419bc9fb1399a8348, type: 3}
+    cardValue: 5
+    cardType: 2
     itemShape:
       size: 3
-      cells: 010100010000010000
-    cardColor: {r: 0.6037736, g: 0.09967959, b: 0.5498346, a: 1}
+      cells: 010101010101000000
+    cardColor: {r: 0.5019608, g: 0.5882353, b: 0.65882355, a: 1}
+  - internalDescription: Playful Pup
+    cardDesciption: Playful Pup
+    cardSprite: {fileID: 21300000, guid: 29ae0d0ea94cf8c438d93cf89b6d5ea2, type: 3}
+    cardValue: 5
+    cardType: 2
+    itemShape:
+      size: 3
+      cells: 010100010100010100
+    cardColor: {r: 0.69803923, g: 0.7607843, b: 0.65882355, a: 1}
+  - internalDescription: Bunny
+    cardDesciption: Bunny
+    cardSprite: {fileID: 21300000, guid: dbb95fd1153040c40b32efc031b16245, type: 3}
+    cardValue: 3
+    cardType: 2
+    itemShape:
+      size: 2
+      cells: 01000101
+    cardColor: {r: 0.89411765, g: 0.77254903, b: 0.5294118, a: 1}
