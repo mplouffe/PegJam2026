@@ -40,7 +40,7 @@ MonoBehaviour:
     itemShape:
       size: 2
       cells: 01010000
-    cardColor: {r: 0.49411765, g: 0.6, b: 0.6627451, a: 1}
+    cardColor: {r: 0.6627451, g: 0.50980395, b: 0.50980395, a: 1}
   - internalDescription: iPhone
     cardDesciption: iPhone
     cardSprite: {fileID: 21300000, guid: 563717e3d0cccb24d9f234f6641f4fad, type: 3}
@@ -107,6 +107,15 @@ MonoBehaviour:
   - internalDescription: Fuzzy Blanket
     cardDesciption: Fuzzy Blanket
     cardSprite: {fileID: 21300000, guid: d35bb6f3406425648aec5e386fa6b39a, type: 3}
+    cardValue: 3
+    cardType: 4
+    itemShape:
+      size: 2
+      cells: 01010000
+    cardColor: {r: 0.6627451, g: 0.50980395, b: 0.50980395, a: 1}
+  - internalDescription: Pillows
+    cardDesciption: Pillows
+    cardSprite: {fileID: 21300000, guid: 1180ad5adc68d534985424d07b6b8a2e, type: 3}
     cardValue: 3
     cardType: 4
     itemShape:
