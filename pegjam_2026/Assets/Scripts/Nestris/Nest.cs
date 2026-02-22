@@ -68,6 +68,22 @@ public class Nest : SingletonBase<Nest>
         }
     }
 
+    public int GetTileCount(ECardType type)
+    {
+        int count = 0;
+        foreach (List<NestTile> tileList in m_nest)
+        {
+            foreach (NestTile tile in tileList)
+            {
+                if (tile.GetTileType() == type)
+                {
+                    count++;
+                }
+            }
+        }
+        return count;
+    }
+
     private void SetState(NestState newState)
     {
         if (m_nestState == newState) return;
