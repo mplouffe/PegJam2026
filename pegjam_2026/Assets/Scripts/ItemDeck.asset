@@ -17,7 +17,7 @@ MonoBehaviour:
   - internalDescription: Popcorn - 1s
     cardDesciption: Popcorn
     cardSprite: {fileID: 21300000, guid: 0dfb98aa2ba9bda4d9ee0d836e1e43f5, type: 3}
-    cardValue: 1
+    cardValue: 2
     cardType: 1
     itemShape:
       size: 1
@@ -26,7 +26,7 @@ MonoBehaviour:
   - internalDescription: Soda - 1s
     cardDesciption: Soda
     cardSprite: {fileID: 21300000, guid: 76c88cf313ed0f545b2a1b7bc6197ac0, type: 3}
-    cardValue: 1
+    cardValue: 2
     cardType: 1
     itemShape:
       size: 1
@@ -53,7 +53,7 @@ MonoBehaviour:
   - internalDescription: iPad
     cardDesciption: iPad
     cardSprite: {fileID: 21300000, guid: 17d0e3199669f804bb23c38d3b2bfe68, type: 3}
-    cardValue: 5
+    cardValue: 4
     cardType: 3
     itemShape:
       size: 1
@@ -71,7 +71,7 @@ MonoBehaviour:
   - internalDescription: Cat
     cardDesciption: Cozy Cat
     cardSprite: {fileID: 21300000, guid: 3d6c6cba1d36ee44f82312309b732b25, type: 3}
-    cardValue: 5
+    cardValue: 7
     cardType: 2
     itemShape:
       size: 2
@@ -80,7 +80,7 @@ MonoBehaviour:
   - internalDescription: Sleepy Pup
     cardDesciption: Sleepy Pup
     cardSprite: {fileID: 21300000, guid: 3813844388cca13419bc9fb1399a8348, type: 3}
-    cardValue: 5
+    cardValue: 8
     cardType: 2
     itemShape:
       size: 3
@@ -89,7 +89,7 @@ MonoBehaviour:
   - internalDescription: Playful Pup
     cardDesciption: Playful Pup
     cardSprite: {fileID: 21300000, guid: 29ae0d0ea94cf8c438d93cf89b6d5ea2, type: 3}
-    cardValue: 5
+    cardValue: 6
     cardType: 2
     itemShape:
       size: 2
@@ -98,7 +98,7 @@ MonoBehaviour:
   - internalDescription: Bunny
     cardDesciption: Bunny
     cardSprite: {fileID: 21300000, guid: dbb95fd1153040c40b32efc031b16245, type: 3}
-    cardValue: 3
+    cardValue: 4
     cardType: 2
     itemShape:
       size: 2
@@ -107,7 +107,7 @@ MonoBehaviour:
   - internalDescription: Fuzzy Blanket
     cardDesciption: Fuzzy Blanket
     cardSprite: {fileID: 21300000, guid: d35bb6f3406425648aec5e386fa6b39a, type: 3}
-    cardValue: 3
+    cardValue: 5
     cardType: 4
     itemShape:
       size: 2
@@ -140,3 +140,12 @@ MonoBehaviour:
       size: 2
       cells: 01000101
     cardColor: {r: 0.69803923, g: 0.7607843, b: 0.65882355, a: 1}
+  - internalDescription: Switch
+    cardDesciption: Magazines
+    cardSprite: {fileID: 21300000, guid: 0fdb60d01f83dfb46ac0e1b95024b25f, type: 3}
+    cardValue: 4
+    cardType: 3
+    itemShape:
+      size: 2
+      cells: 01000100
+    cardColor: {r: 0.89411765, g: 0.77254903, b: 0.5294118, a: 1}
