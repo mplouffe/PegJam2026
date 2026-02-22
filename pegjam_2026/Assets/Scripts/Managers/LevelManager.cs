@@ -13,6 +13,9 @@ namespace lvl_0
         [SerializeField]
         private Duration m_waitDuration;
 
+        [SerializeField]
+        private AudioClip m_levelMusic;
+
         private Level m_activeLevel;
 
         private LevelManagerState m_state;
@@ -64,6 +67,7 @@ namespace lvl_0
             switch(newState)
             {
                 case LevelManagerState.PickingLevel:
+                    AudioManager.Instance.PlayMusic(m_levelMusic);
                     PopupsManager.Instance.ShowLevels(m_levels);
                 break;
                 case LevelManagerState.PlacingPerson:

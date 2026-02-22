@@ -8,6 +8,21 @@ public class MouseFollower : SingletonBase<MouseFollower>
     [SerializeField]
     private Nest m_board;
 
+    [SerializeField]
+    private AudioClip m_dropCardSFX;
+
+    [SerializeField]
+    private AudioClip m_lockPostionSFX;
+
+    [SerializeField]
+    private AudioClip m_rotateSFX;
+
+    [SerializeField]
+    private AudioClip m_placePieceSFX;
+
+    [SerializeField]
+    private AudioClip m_placeDeniedSFX;
+
     private Item m_activeItem = null;
     private CardManager m_activeItemCard = null;
     private Camera m_camera;
@@ -45,6 +60,7 @@ public class MouseFollower : SingletonBase<MouseFollower>
                 Vector2Int cell = m_board.WorldToCell(worldPos);
                 if (m_previousCell != cell)
                 {
+                    AudioManager.Instance.PlaySfx(m_lockPostionSFX);
                     m_previousCell = cell;
                     m_activeItem.ValidateAgainstBoard(cell, m_board);
                     m_activeItem.transform.position = m_board.GetCellWorldPosition(cell.x, cell.y);
@@ -57,10 +73,14 @@ public class MouseFollower : SingletonBase<MouseFollower>
                     {
                         if (m_activeItem.PlacePiece(cell, m_board))
                         {
+                            AudioManager.Instance.PlaySfx(m_placePieceSFX);
                             m_activeItemCard.SetState(CardState.Used);
                             m_activeItem = null;
+                            return;
                         }
                     }
+
+                    AudioManager.Instance.PlaySfx(m_placeDeniedSFX);
                 }
             }
             else
@@ -75,6 +95,7 @@ public class MouseFollower : SingletonBase<MouseFollower>
 
                 if (Input.GetMouseButton(0))
                 {
+                    AudioManager.Instance.PlaySfx(m_dropCardSFX);
                     Destroy(m_activeItem.gameObject);
                     m_activeItemCard.SetState(CardState.Dealt);
                     m_activeItemCard = null;
@@ -84,6 +105,7 @@ public class MouseFollower : SingletonBase<MouseFollower>
 
             if (Input.GetMouseButtonDown(1) && m_activeItem != null)
             {
+                AudioManager.Instance.PlaySfx(m_rotateSFX);
                 m_activeItem.Rotate();
                 m_previousCell = new Vector2Int(-1, -1);
             }

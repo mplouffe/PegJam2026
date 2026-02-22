@@ -256,6 +256,7 @@ MonoBehaviour:
   m_goalFieldPrefab: {fileID: 2800359617589711156, guid: 2f4ea546b003dba43be0ff4c93971d4b, type: 3}
   m_goalsContainer: {fileID: 6778410622176994552}
   m_pickLevelButton: {fileID: 2861622529310677964}
+  m_buttonClickedClip: {fileID: 8300000, guid: b186d6842d44aa6469fe67cc183467b7, type: 3}
 --- !u!1 &1252309489855230741
 GameObject:
   m_ObjectHideFlags: 0

@@ -22,6 +22,9 @@ public class PostLevelCard : MonoBehaviour
     [SerializeField]
     private Duration m_goalPopulationWaitDuration;
 
+    [SerializeField]
+    private AudioClip m_buttonClickedClip;
+
     private PostLevelCardState m_state;
 
     private List<GoalField> m_goals = new List<GoalField>();
@@ -84,6 +87,7 @@ public class PostLevelCard : MonoBehaviour
     public void OnEndClicked()
     {
         LevelManager.Instance.EndLevel();
+        AudioManager.Instance.PlaySfx(m_buttonClickedClip);
     }
 
     public void SetLevel(Level level, int index, LevelTextShaker levelTextShaker)

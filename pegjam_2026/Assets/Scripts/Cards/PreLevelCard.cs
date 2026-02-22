@@ -19,6 +19,9 @@ public class PreLevelCard : MonoBehaviour
     [SerializeField]
     private Button m_pickLevelButton;
 
+    [SerializeField]
+    private AudioClip m_buttonClickedClip;
+
     private Level m_level;
     private int m_index;
 
@@ -35,6 +38,7 @@ public class PreLevelCard : MonoBehaviour
     public void OnPickLevelClicked()
     {
         LevelManager.Instance.PickLevel(m_index);
+        AudioManager.Instance.PlaySfx(m_buttonClickedClip);
     }
 
     public void SetLevel(Level level, int index)
