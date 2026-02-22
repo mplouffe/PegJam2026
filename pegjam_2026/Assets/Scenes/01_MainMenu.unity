@@ -1468,7 +1468,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 80444af57431d004c8d1f4e1869590fc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_autoBackgroundTrack: {fileID: 8300000, guid: 8a58b8458349116429285ff41e01559c, type: 3}
+  m_autoBackgroundTrack: {fileID: 8300000, guid: bef7edd73c0ebf94ea43e969f8e5c068, type: 3}
 --- !u!1 &1436985849
 GameObject:
   m_ObjectHideFlags: 0

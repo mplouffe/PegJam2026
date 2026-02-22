@@ -8,7 +8,7 @@ namespace lvl_0
     public class LevelManager : SingletonBase<LevelManager>
     {
         [SerializeField]
-        private List<Level> m_levels;
+        private LevelDeck m_levelDeck;
 
         [SerializeField]
         private Duration m_waitDuration;
@@ -38,9 +38,9 @@ namespace lvl_0
             }
         }
 
-        public void PickLevel(int pickedLevel)
+        public void PickLevel(string pickedLevel)
         {
-            m_activeLevel = m_levels[pickedLevel];
+            m_activeLevel = m_levelDeck.GetLevelByName(pickedLevel);
             SetState(LevelManagerState.PlacingPerson);
         }
 
@@ -68,7 +68,7 @@ namespace lvl_0
             {
                 case LevelManagerState.PickingLevel:
                     AudioManager.Instance.PlayMusic(m_levelMusic);
-                    PopupsManager.Instance.ShowLevels(m_levels);
+                    PopupsManager.Instance.ShowLevels(m_levelDeck.GetLevels()); // TODO: Improve here if we get more levels
                 break;
                 case LevelManagerState.PlacingPerson:
                     PopupsManager.Instance.ClearLevelInfo();

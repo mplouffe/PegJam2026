@@ -131,7 +131,7 @@ MonoBehaviour:
       m_PostInfinity: 2
       m_RotationOrder: 4
     m_totalDuration: 0.5
-  m_goalCompleteSFX: {fileID: 8300000, guid: 7a092144a7b2f034d863b8d93873fdcc, type: 3}
+  m_goalCompleteSFX: {fileID: 8300000, guid: 606d9b5f796725a41be5ca9067546752, type: 3}
   m_goalFailedSFX: {fileID: 8300000, guid: 538db6a2e42375c4588017b5f9200453, type: 3}
 --- !u!1 &6680769866777038447
 GameObject:

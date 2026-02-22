@@ -23,7 +23,6 @@ public class PreLevelCard : MonoBehaviour
     private AudioClip m_buttonClickedClip;
 
     private Level m_level;
-    private int m_index;
 
     private void Awake()
     {
@@ -37,13 +36,12 @@ public class PreLevelCard : MonoBehaviour
 
     public void OnPickLevelClicked()
     {
-        LevelManager.Instance.PickLevel(m_index);
+        LevelManager.Instance.PickLevel(m_level.LevelName);
         AudioManager.Instance.PlaySfx(m_buttonClickedClip);
     }
 
-    public void SetLevel(Level level, int index)
+    public void SetLevel(Level level)
     {
-        m_index = index;
         m_level = level;
         m_titleText.text = level.LevelName;
         foreach(var goal in level.LevelGoals)

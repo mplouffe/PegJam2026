@@ -330,14 +330,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 98392c8b28b6c2c4ca20cf2b09b6ceef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_levels:
-  - LevelName: Netflix and Chill
-    LevelGoals:
-    - {fileID: 6377784352583342946, guid: 8d6f2e0e367e3c84eba8754a1c3cec32, type: 3}
-    - {fileID: 6377784352583342946, guid: 56822330c1570e34bbe8b61b20ab1fb0, type: 3}
-  - LevelName: Netflix and Even Chiller
-    LevelGoals:
-    - {fileID: 6377784352583342946, guid: 56822330c1570e34bbe8b61b20ab1fb0, type: 3}
+  m_levelDeck: {fileID: 11400000, guid: 79e21ef7edac6ea4fba429e454eca2b7, type: 2}
   m_waitDuration:
     m_easingCurve:
       serializedVersion: 2
@@ -364,7 +357,7 @@ MonoBehaviour:
       m_PostInfinity: 2
       m_RotationOrder: 4
     m_totalDuration: 0.15
-  m_levelMusic: {fileID: 8300000, guid: bef7edd73c0ebf94ea43e969f8e5c068, type: 3}
+  m_levelMusic: {fileID: 8300000, guid: 8a58b8458349116429285ff41e01559c, type: 3}
 --- !u!4 &71051613
 Transform:
   m_ObjectHideFlags: 0
@@ -2008,7 +2001,7 @@ PrefabInstance:
     - target: {fileID: 7392335898896842541, guid: 4e655eec218a093438864f370baa8657, type: 3}
       propertyPath: m_scoreSFX
       value: 
-      objectReference: {fileID: 8300000, guid: 36ce5c67c4f28934eb436a7104af1fc7, type: 3}
+      objectReference: {fileID: 8300000, guid: f8fcd0d134398564a950f13ad8ec24e8, type: 3}
     - target: {fileID: 8164732368198927385, guid: 4e655eec218a093438864f370baa8657, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0

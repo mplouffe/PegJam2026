@@ -67,12 +67,10 @@ public class PopupsManager : MonoBehaviour
     {
         m_levelInfoCanvsGroup.alpha = 1;
         m_levelInfoCanvsGroup.blocksRaycasts = true;
-        int i = 0;
         foreach (var level in levels)
         {
             var levelCard = Instantiate(m_levelCardPrefab, m_levelCardContainer);
-            levelCard.SetLevel(level, i);
-            i++;
+            levelCard.SetLevel(level);
         }
     }
 
