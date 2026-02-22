@@ -513,9 +513,25 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1789729387}
     - target: {fileID: 6537501419946924462, guid: eabf76705264ce545851d94c8f00a3c1, type: 3}
+      propertyPath: m_scoreMinWait
+      value: 0.25
+      objectReference: {fileID: 0}
+    - target: {fileID: 6537501419946924462, guid: eabf76705264ce545851d94c8f00a3c1, type: 3}
+      propertyPath: m_scoreDecrement
+      value: 0.01
+      objectReference: {fileID: 0}
+    - target: {fileID: 6537501419946924462, guid: eabf76705264ce545851d94c8f00a3c1, type: 3}
       propertyPath: m_scoreNestButton
       value: 
       objectReference: {fileID: 1122021680}
+    - target: {fileID: 6537501419946924462, guid: eabf76705264ce545851d94c8f00a3c1, type: 3}
+      propertyPath: m_scoreStartingWait
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6537501419946924462, guid: eabf76705264ce545851d94c8f00a3c1, type: 3}
+      propertyPath: m_scoringWaitDuration.m_totalDuration
+      value: 0.5
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
