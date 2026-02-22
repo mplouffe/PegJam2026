@@ -21,7 +21,6 @@ namespace lvl_0
         protected override void Awake()
         {
 
-
             if (m_gameDictionaryEntries == null)
             {
                 Debug.LogError("ArcadeAttendant has an empty dictionary! (?°?°)?? ???");

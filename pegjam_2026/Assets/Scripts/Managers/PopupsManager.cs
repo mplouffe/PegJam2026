@@ -28,6 +28,11 @@ public class PopupsManager : MonoBehaviour
     [SerializeField]
     private Transform m_levelCardContainer;
 
+    [SerializeField]
+    private QuitPopup m_quitPopupPrefab;
+
+    private QuitPopup m_quitPopup = null;
+
     private void Awake()
     {
         if (Instance != null && Instance != this)
@@ -80,5 +85,22 @@ public class PopupsManager : MonoBehaviour
         m_levelInfoCanvsGroup.blocksRaycasts = false;
         foreach (Transform child in m_levelCardContainer)
             Destroy(child.gameObject);
+    }
+
+    public void Quit()
+    {
+        m_levelInfoCanvsGroup.alpha = 1;
+        m_levelInfoCanvsGroup.blocksRaycasts = true;
+        m_quitPopup = Instantiate(m_quitPopupPrefab, m_levelCardContainer.parent);
+    }
+
+    public void HideQuitPopup()
+    {
+        m_levelInfoCanvsGroup.alpha = 0;
+        m_levelInfoCanvsGroup.blocksRaycasts = false;
+        if(m_quitPopup != null)
+        {
+            Destroy(m_quitPopup.gameObject);
+        }
     }
 }

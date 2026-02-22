@@ -15,6 +15,7 @@ namespace lvl_0
         [SerializeField] private GameObject m_cardPrefab;
         [SerializeField] private List<Decks> m_cardDecks;
         [SerializeField] private Button m_drawCardButton;
+        [SerializeField] private Button m_quitButton;
         [SerializeField] private AudioClip m_drawCardSFX;
 
         private Dictionary<EDeck, CardDeck> m_deckDictionary = new Dictionary<EDeck, CardDeck>();
@@ -45,6 +46,7 @@ namespace lvl_0
 
             // Register Events
             m_drawCardButton.onClick.AddListener(OnDrawCardClick);
+            m_quitButton.onClick.AddListener(OnQuitClicked);
             SetState(DeckManagerState.PreGame);
         }
 
@@ -76,6 +78,7 @@ namespace lvl_0
         {
             // Unregister Events
             m_drawCardButton.onClick.RemoveListener(OnDrawCardClick);
+            m_quitButton.onClick.RemoveListener(OnQuitClicked);
             base.OnDestroy();
         }
 
@@ -246,6 +249,11 @@ namespace lvl_0
                 }
             }
             return playersHand;
+        }
+
+        public void OnQuitClicked()
+        {
+            PopupsManager.Instance.Quit();
         }
     }
 
