@@ -26,6 +26,9 @@ public class Nest : SingletonBase<Nest>
     private Duration m_scoringWaitDuration;
 
     [SerializeField]
+    private float m_scoreDecrement;
+
+    [SerializeField]
     private Duration m_postScoreWaitDuration;
 
     [SerializeField]
@@ -90,10 +93,11 @@ public class Nest : SingletonBase<Nest>
             case NestState.Scoring:
                 if (m_scoringWaitDuration.UpdateCheck())
                 {
-                    var score = m_nest[m_scoringTracker.x][m_scoringTracker.y].ScoreTile();
-                    var type = m_nest[m_scoringTracker.x][m_scoringTracker.y].GetTileType();
+                    NestTile currentNestTile = m_nest[m_scoringTracker.x][m_scoringTracker.y];
+                    var score = currentNestTile.ScoreTile();
+                    var type = currentNestTile.GetTileType();
                     m_finalScore += score * m_scoreTypeMultipliers[type];
-                    m_scoreField.text = m_finalScore.ToString();
+                    ScoreboardManager.Instance.PostScore(score, currentNestTile.GetTileName(), currentNestTile.GetTileColor(), m_scoreTypeMultipliers[type], currentNestTile.GetTileType().ToString(), currentNestTile.GetTileColor(), (int)m_finalScore);
                     if (type != ECardType.Misc) m_scoreTypeMultipliers[type] += m_scoreMultiplerIncrement;
 
                     m_scoringTracker.y -= 1;
@@ -106,7 +110,7 @@ public class Nest : SingletonBase<Nest>
                             SetState(NestState.Waiting);
                         }
                     }
-                    m_scoringWaitDuration.Reset(Mathf.Max(0.15f, m_scoringWaitDuration.TotalDuration() - 0.025f));
+                    m_scoringWaitDuration.Reset(Mathf.Max(0.5f, m_scoringWaitDuration.TotalDuration() - m_scoreDecrement));
                 }
                 break;
             case NestState.Waiting:

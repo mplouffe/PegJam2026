@@ -57,6 +57,16 @@ public class NestTile : MonoBehaviour
         return m_card?.cardType ?? ECardType.Misc;
     }
 
+    public string GetTileName()
+    {
+        return m_card?.cardDesciption ?? string.Empty;
+    }
+
+    public Color GetTileColor()
+    {
+        return m_card?.cardColor ?? Color.clear;
+    }
+
     public void SetState(NestTileState newState)
     {
         switch (newState)

@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 83c1f0968ac49944e8bef19908403abc, type: 3}
   m_Name: ItemDeck
   m_EditorClassIdentifier: 
+  DeckType: 0
   cardsMap:
   - internalDescription: Popcorn - 1s
     cardDesciption: Popcorn
@@ -84,4 +85,4 @@ MonoBehaviour:
     itemShape:
       size: 3
       cells: 010100010000010000
-    cardColor: {r: 0.10980392, g: 0.10980392, b: 0.10980392, a: 0.09803922}
+    cardColor: {r: 0.6037736, g: 0.09967959, b: 0.5498346, a: 1}
