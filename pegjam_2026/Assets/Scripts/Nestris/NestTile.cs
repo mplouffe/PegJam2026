@@ -16,6 +16,7 @@ public class NestTile : MonoBehaviour
     private float m_popScale;
 
     private Card m_card = null;
+    private ItemVisual m_visualization = null;
 
     public NestTileState State { get; private set; }
 
@@ -38,9 +39,10 @@ public class NestTile : MonoBehaviour
         }
     }
 
-    public void Occupy(Card card)
+    public void Occupy(Card card, ItemVisual visualization)
     {
         m_card = card;
+        m_visualization = visualization;
         SetState(NestTileState.Occupied);
     }
 
@@ -63,7 +65,10 @@ public class NestTile : MonoBehaviour
                 m_sprite.color = m_emptyColor;
                 break;
             case NestTileState.Occupied:
-                //m_sprite.color = m_card.cardColor;
+                m_sprite.color = m_card.cardColor;
+                break;
+            case NestTileState.Scoring:
+                m_visualization?.Pop();
                 break;
         }
         State = newState;

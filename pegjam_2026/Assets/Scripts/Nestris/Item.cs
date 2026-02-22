@@ -15,11 +15,12 @@ public class Item : MonoBehaviour
     private ItemTile m_tilePrefab;
 
     [SerializeField]
-    private ItemVisual m_itemVisual;
+    private ItemVisual m_itemVisualPrefab;
 
     public bool Locked = true;
 
     private Dictionary<Vector2Int, ItemTile> m_tiles = new Dictionary<Vector2Int, ItemTile>();
+    private ItemVisual m_itemVisualzation;
 
     private void Awake()
     {
@@ -50,19 +51,22 @@ public class Item : MonoBehaviour
         numOfCols++;
         numOfRows++;
 
-        var itemVisual = Instantiate(m_itemVisual, new Vector3(0, 0, 0), Quaternion.identity, transform);
-        itemVisual.Init(ItemCard.cardSprite);
+        if (m_itemVisualzation == null)
+        {
+            m_itemVisualzation = Instantiate(m_itemVisualPrefab, new Vector3(0, 0, 0), Quaternion.identity, transform);
+            m_itemVisualzation.Init(ItemCard.cardSprite);
+        }
+
         float itemVisualPosXOffset = ((float)numOfCols / 2) - 0.5f;
         float itemVisualPosYOffset = ((float)numOfRows / 2) - 0.5f;
 
         Vector3 newPos = new Vector3(itemVisualPosXOffset, -itemVisualPosYOffset, 0);
-        itemVisual.transform.SetPositionAndRotation(newPos, itemVisual.transform.rotation);
+        m_itemVisualzation.transform.SetLocalPositionAndRotation(newPos, m_itemVisualzation.transform.rotation);
     }
 
     private void ClearTiles()
     {
-        foreach (var tile in m_tiles.Values)
-            Destroy(tile.gameObject);
+        foreach (var tile in m_tiles.Values) Destroy(tile.gameObject);
         m_tiles.Clear();
     }
 
@@ -102,7 +106,7 @@ public class Item : MonoBehaviour
             int boardCol = boardAnchor.x + c;
             int boardRow = boardAnchor.y - r;
 
-            bool valid = board != null && board.PlacePiece(boardCol, boardRow, ItemCard);
+            bool valid = board != null && board.PlacePiece(boardCol, boardRow, ItemCard, m_itemVisualzation);
             if (!valid)
             {
                 Debug.LogError("Error! Trying to place invalid piece");
@@ -121,6 +125,14 @@ public class Item : MonoBehaviour
     public void Rotate()
     {
         ItemShape.RotateClockwise();
+        RotateVisualization();
         BuildVisualization();
+    }
+
+    private void RotateVisualization()
+    {
+        Vector3 currentAngle = m_itemVisualzation.transform.rotation.eulerAngles;
+        m_itemVisualzation.transform.rotation = Quaternion.Euler(currentAngle.x, currentAngle.y, currentAngle.z - 90);
+
     }
 }
