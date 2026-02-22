@@ -22,7 +22,7 @@ MonoBehaviour:
     itemShape:
       size: 3
       cells: 010000010000010000
-    cardColor: {r: 0.23137255, g: 0.7490196, b: 1, a: 1}
+    cardColor: {r: 0.50980395, g: 0.6, b: 0.65882355, a: 1}
   - internalDescription: Person_02
     cardDesciption: Reader L
     cardSprite: {fileID: 21300000, guid: 65c426eafac84be4a9e00ddba85deb3e, type: 3}
@@ -31,7 +31,7 @@ MonoBehaviour:
     itemShape:
       size: 3
       cells: 010000010000010100
-    cardColor: {r: 0.23137255, g: 0.7490196, b: 1, a: 1}
+    cardColor: {r: 0.50980395, g: 0.6, b: 0.65882355, a: 1}
   - internalDescription: Person_03
     cardDesciption: Tiny Package
     cardSprite: {fileID: 21300000, guid: 10f3a0612cb585c459867adbe05ff3f9, type: 3}
@@ -40,7 +40,7 @@ MonoBehaviour:
     itemShape:
       size: 1
       cells: 01
-    cardColor: {r: 0.23113209, g: 0.74734074, b: 1, a: 1}
+    cardColor: {r: 0.50980395, g: 0.6, b: 0.65882355, a: 1}
   - internalDescription: Person_04
     cardDesciption: Lanky L
     cardSprite: {fileID: 21300000, guid: 7386f51df2aa7b548ac19fe74fe4a6b7, type: 3}
@@ -49,4 +49,4 @@ MonoBehaviour:
     itemShape:
       size: 3
       cells: 000100000100010100
-    cardColor: {r: 0.23137255, g: 0.7490196, b: 1, a: 1}
+    cardColor: {r: 0.50980395, g: 0.6, b: 0.65882355, a: 1}
