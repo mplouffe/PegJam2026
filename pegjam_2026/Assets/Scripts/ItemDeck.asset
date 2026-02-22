@@ -149,3 +149,21 @@ MonoBehaviour:
       size: 2
       cells: 01000100
     cardColor: {r: 0.89411765, g: 0.77254903, b: 0.5294118, a: 1}
+  - internalDescription: Soft Blanket
+    cardDesciption: Soft Blanket
+    cardSprite: {fileID: 21300000, guid: 23780d72de9decc4f9f878331d765859, type: 3}
+    cardValue: 5
+    cardType: 4
+    itemShape:
+      size: 2
+      cells: 00010101
+    cardColor: {r: 0.4862745, g: 0.5921569, b: 0.654902, a: 1}
+  - internalDescription: Sonic
+    cardDesciption: Hedgehog
+    cardSprite: {fileID: 21300000, guid: cac4444b9b09bbe41ac277df58744fed, type: 3}
+    cardValue: 3
+    cardType: 2
+    itemShape:
+      size: 1
+      cells: 01
+    cardColor: {r: 0.69803923, g: 0.7607843, b: 0.65882355, a: 1}
