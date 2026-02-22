@@ -15,14 +15,18 @@ public class QuitPopup : MonoBehaviour
 
     private void Awake()
     {
-        m_leaveLevelButton.onClick.AddListener(OnLeaveLevelClicked);
-        m_cancelButton.onClick.AddListener(OnCancelClicked);
+        if(m_leaveLevelButton != null)
+            m_leaveLevelButton.onClick.AddListener(OnLeaveLevelClicked);
+        if(m_cancelButton != null)
+            m_cancelButton.onClick.AddListener(OnCancelClicked);
     }
 
     private void OnDestroy()
     {
-        m_leaveLevelButton.onClick.RemoveListener(OnLeaveLevelClicked);
-        m_cancelButton.onClick.RemoveListener(OnCancelClicked);
+        if (m_leaveLevelButton != null)
+            m_leaveLevelButton.onClick.RemoveListener(OnLeaveLevelClicked);
+        if (m_cancelButton != null)
+            m_cancelButton.onClick.RemoveListener(OnCancelClicked);
     }
 
     public void OnLeaveLevelClicked()
