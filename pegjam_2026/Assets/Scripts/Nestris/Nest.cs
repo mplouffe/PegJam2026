@@ -45,6 +45,7 @@ public class Nest : SingletonBase<Nest>
 
     public float Score { get { return m_finalScore; } }
 
+    [SerializeField]
     private NestState m_nestState;
 
     private Vector2Int m_scoringTracker = Vector2Int.zero;
@@ -82,6 +83,23 @@ public class Nest : SingletonBase<Nest>
             }
         }
         return count;
+    }
+
+    public void CleanNest()
+    {
+        foreach (var item in FindObjectsOfType<Item>())
+        {
+            Destroy(item.gameObject);
+        }
+        foreach (List<NestTile> tileList in m_nest)
+        {
+            foreach (NestTile tile in tileList)
+            {
+                tile.ResetTile();
+            }
+        }
+        SetState(NestState.Empty);
+        m_finalScore = 0;
     }
 
     public int GetProximityCount(ECardType typeOne, ECardType typeTwo)
@@ -123,6 +141,7 @@ public class Nest : SingletonBase<Nest>
                 m_scoringWaitDuration.Reset(m_scoreStartingWait);
                 m_scoringTracker = new Vector2Int(m_nestHeight-1, m_nestWidth-1);
                 CardDeckManager.Instance.StopDealing();
+                ScoreboardManager.Instance.ResetScoreboard();
                 m_scoreNestButton.gameObject.SetActive(false);
                 break;
             case NestState.Placing:
@@ -132,7 +151,7 @@ public class Nest : SingletonBase<Nest>
                 m_postScoreWaitDuration.Reset();
                 break;
             case NestState.Ending:
-                LevelManager.Instance.EvaluateLevel();
+                LevelManager.Instance.EvaluateLevel();  // TODO: hERE To navigate to score event instead first
                 break;
         }
         m_nestState = newState;

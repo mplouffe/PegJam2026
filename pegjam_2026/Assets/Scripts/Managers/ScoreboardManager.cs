@@ -27,10 +27,15 @@ public class ScoreboardManager : SingletonBase<ScoreboardManager>
     public void PostScore(int tileScore, string tileName, Color tileColor, float multiplier, string multiplerType, Color multiplierColor, int totalScore)
     {
         AudioManager.Instance.PlaySfx(tileScore > 0 ? m_scoreSFX : m_zeroSFX);
-        m_tileScoreElement.Pop(tileScore, tileName, tileColor);
-        m_multiplierElement.Pop(multiplier, multiplerType, multiplierColor);
-        m_totalScoreElement.Pop(totalScore, "Score", Color.white);
-        if (tileScore > 0) m_xElement.Pop(0, "X", Color.white);
+        m_tileScoreElement.Pop(tileScore.ToString(), tileName, tileColor);
+        m_multiplierElement.Pop(multiplier.ToString("F2"), multiplerType, multiplierColor);
+        m_totalScoreElement.Pop(totalScore.ToString(), "Score", Color.white);
+        if (tileScore > 0) m_xElement.Pop("", "X", Color.white);
+    }
+
+    public  void ResetScoreboard()
+    {
+        m_totalScoreElement.Reset();
     }
     
 }

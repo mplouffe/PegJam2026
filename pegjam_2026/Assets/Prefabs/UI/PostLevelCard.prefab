@@ -65,7 +65,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: END
+  m_text: next
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8323d193f0303994bbfe2e0a551d6b3a, type: 2}
   m_sharedMaterial: {fileID: 5749719764652972054, guid: 8323d193f0303994bbfe2e0a551d6b3a, type: 2}
@@ -341,7 +341,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.6, g: 0.35686275, b: 0.2627451, a: 1}
+  m_Color: {r: 0.52705586, g: 0.6864599, b: 0.7924528, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1

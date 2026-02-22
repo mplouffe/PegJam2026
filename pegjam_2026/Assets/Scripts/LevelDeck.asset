@@ -16,19 +16,102 @@ MonoBehaviour:
   - LevelName: Netflix and Chill
     LevelGoals:
     - Type: 0
-      Description: Get at least 50 points.
-      GoalCount: 50
+      Description: Get at least 120 points.
+      GoalCount: 120
       TargetType: 0
+      ComparisonType: 0
       Operator: 1
   - LevelName: Snack Attack
     LevelGoals:
+    - Type: 0
+      Description: Score at least 75 points
+      GoalCount: 75
+      TargetType: 2
+      ComparisonType: 0
+      Operator: 1
     - Type: 1
       Description: Have at least 4 snacks.
       GoalCount: 4
       TargetType: 1
+      ComparisonType: 0
       Operator: 1
     - Type: 1
       Description: No pets allowed.
       GoalCount: 0
       TargetType: 2
+      ComparisonType: 0
+      Operator: 0
+  - LevelName: Health Codes
+    LevelGoals:
+    - Type: 0
+      Description: Score at least 50 points
+      GoalCount: 50
+      TargetType: 2
+      ComparisonType: 1
+      Operator: 1
+    - Type: 2
+      Description: No pets next to snacks
+      GoalCount: 0
+      TargetType: 2
+      ComparisonType: 1
+      Operator: 0
+    - Type: 1
+      Description: At least 5 pets
+      GoalCount: 5
+      TargetType: 2
+      ComparisonType: 1
+      Operator: 1
+  - LevelName: Warm Friends
+    LevelGoals:
+    - Type: 0
+      Description: Score at least 65 points
+      GoalCount: 65
+      TargetType: 4
+      ComparisonType: 2
+      Operator: 1
+    - Type: 2
+      Description: At least 4 pets next to you
+      GoalCount: 4
+      TargetType: 5
+      ComparisonType: 2
+      Operator: 1
+    - Type: 1
+      Description: At least 5 blankets
+      GoalCount: 5
+      TargetType: 4
+      ComparisonType: 2
+      Operator: 1
+  - LevelName: Sticky Electronics
+    LevelGoals:
+    - Type: 0
+      Description: Score at least 75 points
+      GoalCount: 75
+      TargetType: 4
+      ComparisonType: 2
+      Operator: 1
+    - Type: 2
+      Description: Have devices next to 7 snacks
+      GoalCount: 7
+      TargetType: 3
+      ComparisonType: 1
+      Operator: 1
+  - LevelName: Little Person, Big Appetitie
+    LevelGoals:
+    - Type: 0
+      Description: Score at least 70 points
+      GoalCount: 70
+      TargetType: 4
+      ComparisonType: 2
+      Operator: 1
+    - Type: 1
+      Description: Must pick Tiny Package
+      GoalCount: 1
+      TargetType: 5
+      ComparisonType: 1
+      Operator: 0
+    - Type: 1
+      Description: Person next to 4 snacks
+      GoalCount: 4
+      TargetType: 5
+      ComparisonType: 1
       Operator: 0

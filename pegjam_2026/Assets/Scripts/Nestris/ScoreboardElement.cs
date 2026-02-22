@@ -31,16 +31,22 @@ public class ScoreboardElement : MonoBehaviour
 
     private void Awake()
     {
+        Reset();
         SetState(ScoreboardElementState.None);    
     }
 
-    public void Pop(float score, string name = "Score", Color color = default)
+    public void Pop(string score, string name = "Score", Color color = default)
     {
         m_elementValue.text = score.ToString();
         m_elementLabel.text = name;
         m_elementLabel.color = color;
         m_elementValue.color = color;
         SetState(ScoreboardElementState.Popping);
+    }
+
+    public void Reset()
+    {
+        m_elementValue.text = 0.ToString();
     }
 
     private void SetState(ScoreboardElementState newState)

@@ -31,9 +31,13 @@ namespace lvl_0
             return null;
         }
 
-        public List<Level> GetRandomLevels(int count = 3)
+        public List<Level> GetRandomLevels(List<Level> beatenLevels, int count = 3)
         {
-            return levelMap.OrderBy(_ => Random.Range(0, int.MaxValue)).Take(count).ToList();
+            return levelMap
+                .Where(l => !beatenLevels.Any(b => b.LevelName == l.LevelName))
+                .OrderBy(_ => Random.Range(0, int.MaxValue))
+                .Take(count)
+                .ToList();
         }
     }
 }

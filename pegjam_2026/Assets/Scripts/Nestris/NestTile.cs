@@ -39,6 +39,13 @@ public class NestTile : MonoBehaviour
         }
     }
 
+    public void ResetTile()
+    {
+        m_card = null;
+        m_visualization = null;
+        SetState(NestTileState.Empty);
+    }
+
     public void Occupy(Card card, ItemVisual visualization)
     {
         m_card = card;

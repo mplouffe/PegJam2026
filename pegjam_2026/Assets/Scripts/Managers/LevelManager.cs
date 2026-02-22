@@ -17,12 +17,17 @@ namespace lvl_0
         private AudioClip m_levelMusic;
 
         private Level m_activeLevel;
+        private List<Level> m_beatenLevels = new List<Level>();
+
+        private bool m_endGame = false;
 
         private LevelManagerState m_state;
 
         protected override void Awake()
         {
             base.Awake();
+            m_endGame = false;
+
         }
 
         private void Update()
@@ -56,9 +61,14 @@ namespace lvl_0
 
         public void EndLevel()
         {
-            // TODO: Logic to go back into gameplay loop
-            // for now we just end the game
-            LevelAttendant.Instance.LoadGameState(GameState.GameOver);
+            if (m_endGame)
+            {
+                LevelAttendant.Instance.LoadGameState(GameState.GameOver);
+            }
+            else
+            {
+                SetState(LevelManagerState.PickingLevel);
+            }
         }
 
         private void SetState(LevelManagerState newState)
@@ -67,9 +77,19 @@ namespace lvl_0
             switch(newState)
             {
                 case LevelManagerState.PickingLevel:
-                    AudioManager.Instance.PlayMusic(m_levelMusic);
-                    PopupsManager.Instance.ShowLevels(m_levelDeck.GetRandomLevels()); // TODO: Improve here if we get more levels
-                break;
+                    if (m_state == LevelManagerState.Waiting) AudioManager.Instance.PlayMusic(m_levelMusic);
+                    Nest.Instance.CleanNest();
+                    PopupsManager.Instance.ClearLevelInfo();
+                    var levels = m_levelDeck.GetRandomLevels(m_beatenLevels);
+                    if (levels.Count > 0)
+                    {
+                        PopupsManager.Instance.ShowLevels(levels);
+                    }
+                    else
+                    {
+                        LevelAttendant.Instance.LoadGameState(GameState.GameOver);
+                    }
+                    break;
                 case LevelManagerState.PlacingPerson:
                     PopupsManager.Instance.ClearLevelInfo();
                     CardDeckManager.Instance.SetCardDeck(EDeck.PersonDeck);
@@ -84,10 +104,12 @@ namespace lvl_0
                     if (m_activeLevel.LevelPassed())
                     {
                         PopupsManager.Instance.LevelPassed(m_activeLevel);
+                        m_beatenLevels.Add(m_activeLevel);
                     }
                     else
                     {
                         PopupsManager.Instance.LevelFailed(m_activeLevel);
+                        m_endGame = true;
                     }
                     break;
             }

@@ -217,6 +217,8 @@ MonoBehaviour:
   m_multiplierElement: {fileID: 3524635403729357273}
   m_xElement: {fileID: 6282681695790283946}
   m_totalScoreElement: {fileID: 6048894750836950194}
+  m_scoreSFX: {fileID: 0}
+  m_zeroSFX: {fileID: 0}
 --- !u!1 &2566792249645220891
 GameObject:
   m_ObjectHideFlags: 0
@@ -728,7 +730,7 @@ MonoBehaviour:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    m_totalDuration: 1
+    m_totalDuration: 0.5
   m_popScale: 1.5
   m_persistent: 0
 --- !u!1 &5788321242975571638

@@ -28,6 +28,8 @@ public class PopupsManager : MonoBehaviour
     [SerializeField]
     private Transform m_levelCardContainer;
 
+    private LevelTextShaker m_activeTextReference;
+
     private void Awake()
     {
         if (Instance != null && Instance != this)
@@ -48,9 +50,9 @@ public class PopupsManager : MonoBehaviour
         m_levelInfoCanvsGroup.alpha = 1;
         m_levelInfoCanvsGroup.blocksRaycasts = true;
         var levelCard = Instantiate(m_postLevelCardPrefab, m_levelCardContainer);
-        var passedText = Instantiate(m_passedLevelText, m_levelCardContainer.parent);
-        passedText.HideText();
-        levelCard.SetLevel(passedLevel, -1, passedText);
+        m_activeTextReference = Instantiate(m_passedLevelText, m_levelCardContainer.parent);
+        m_activeTextReference.HideText();
+        levelCard.SetLevel(passedLevel, -1, m_activeTextReference);
     }
 
     public void LevelFailed(Level failedLevel)
@@ -58,9 +60,9 @@ public class PopupsManager : MonoBehaviour
         m_levelInfoCanvsGroup.alpha = 1;
         m_levelInfoCanvsGroup.blocksRaycasts = true;
         var levelCard = Instantiate(m_postLevelCardPrefab, m_levelCardContainer);
-        var failedText = Instantiate(m_failedLevelText, m_levelCardContainer.parent);
-        failedText.HideText();
-        levelCard.SetLevel(failedLevel, -1, failedText);
+        m_activeTextReference = Instantiate(m_failedLevelText, m_levelCardContainer.parent);
+        m_activeTextReference.HideText();
+        levelCard.SetLevel(failedLevel, -1, m_activeTextReference);
     }
 
     public void ShowLevels(List<Level> levels)
@@ -80,5 +82,8 @@ public class PopupsManager : MonoBehaviour
         m_levelInfoCanvsGroup.blocksRaycasts = false;
         foreach (Transform child in m_levelCardContainer)
             Destroy(child.gameObject);
+        if (m_activeTextReference != null)
+            Destroy(m_activeTextReference.gameObject);
+        m_activeTextReference = null;
     }
 }
