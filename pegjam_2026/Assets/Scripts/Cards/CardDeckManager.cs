@@ -11,6 +11,7 @@ namespace lvl_0
 	{
         [Header("References")]
         [SerializeField] private Transform m_cardContainer;
+        [SerializeField] private Transform m_scoreContainer;
         [SerializeField] private GameObject m_cardPrefab;
         [SerializeField] private List<Decks> m_cardDecks;
         [SerializeField] private Button m_drawCardButton;
@@ -54,14 +55,17 @@ namespace lvl_0
                 case DeckManagerState.PreGame:
                     m_drawCardButton.gameObject.SetActive(false);
                     m_cardContainer.gameObject.SetActive(false);
+                    m_scoreContainer.gameObject.SetActive(false);
                     break;
                 case DeckManagerState.Dealing:
                     m_drawCardButton.gameObject.SetActive(true);
                     m_cardContainer.gameObject.SetActive(true);
+                    m_scoreContainer.gameObject.SetActive(false);
                     break;
                 case DeckManagerState.Scoring:
                     m_drawCardButton.gameObject.SetActive(false);
                     m_cardContainer.gameObject.SetActive(false);
+                    m_scoreContainer.gameObject.SetActive(true);
                     break;
             }
 
