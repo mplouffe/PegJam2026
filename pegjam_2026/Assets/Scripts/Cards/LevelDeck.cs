@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 namespace lvl_0
@@ -28,6 +29,11 @@ namespace lvl_0
                 }
             }
             return null;
+        }
+
+        public List<Level> GetRandomLevels(int count = 3)
+        {
+            return levelMap.OrderBy(_ => Random.Range(0, int.MaxValue)).Take(count).ToList();
         }
     }
 }

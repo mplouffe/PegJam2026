@@ -15,6 +15,8 @@ public class Goal
 
     public ECardType TargetType;
 
+    public ECardType ComparisonType;
+
     public TypeOperator Operator;
 
 
@@ -34,6 +36,15 @@ public class Goal
                     _ => false
                 };
                 break;
+            case EGoalType.ProximityType:
+                int count = Nest.Instance.GetProximityCount(TargetType, ComparisonType);
+                result = Operator switch
+                {
+                    TypeOperator.LessThan => GoalCount >= count,
+                    TypeOperator.MoreThan => GoalCount <= count,
+                    _ => false
+                };
+                break;
         }
         return result;
     }
@@ -43,6 +54,7 @@ public enum EGoalType
 {
     Score,
     CardType,
+    ProximityType
 }
 
 public enum TypeOperator

@@ -68,7 +68,7 @@ namespace lvl_0
             {
                 case LevelManagerState.PickingLevel:
                     AudioManager.Instance.PlayMusic(m_levelMusic);
-                    PopupsManager.Instance.ShowLevels(m_levelDeck.GetLevels()); // TODO: Improve here if we get more levels
+                    PopupsManager.Instance.ShowLevels(m_levelDeck.GetRandomLevels()); // TODO: Improve here if we get more levels
                 break;
                 case LevelManagerState.PlacingPerson:
                     PopupsManager.Instance.ClearLevelInfo();

@@ -84,6 +84,36 @@ public class Nest : SingletonBase<Nest>
         return count;
     }
 
+    public int GetProximityCount(ECardType typeOne, ECardType typeTwo)
+    {
+        var directions = new List<Vector2>() { Vector2.left, Vector2.right, Vector2.up, Vector2.down };
+        int count = 0;
+        for(var i = 0; i < m_nest.Count; i++)
+        {
+            var tileList = m_nest[i];
+            for(var j = 0; j < tileList.Count; j++)
+            {
+                var currentTile = tileList[j];
+                if (currentTile.GetTileType() == typeOne)
+                {
+                    foreach (var direction in directions)
+                    {
+
+                        var checkX = Mathf.Min(Mathf.Max(0, i + (int)direction.x), m_nest.Count - 1);
+                        var checkY = Mathf.Min(Mathf.Max(0, j + (int)direction.y), tileList.Count - 1);
+                        var checkTile = m_nest[checkX][checkY];
+                        if (checkTile.GetTileType() == typeTwo)
+                        {
+                            count++;
+                        }
+                    }
+                }
+            }
+        }
+
+        return count;
+    }
+
     private void SetState(NestState newState)
     {
         if (m_nestState == newState) return;
