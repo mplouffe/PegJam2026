@@ -421,6 +421,7 @@ MonoBehaviour:
   m_cardDescription: 
   m_cardSprite: {fileID: 0}
   m_itemPrefab: {fileID: 6302787106663343526, guid: 4acccf8be2af6374da7ffb526c0e41f7, type: 3}
+  m_pickedSFX: {fileID: 8300000, guid: ee22d836018287248b1f4cd430540ab7, type: 3}
 --- !u!114 &3675664649887363158
 MonoBehaviour:
   m_ObjectHideFlags: 0

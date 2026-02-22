@@ -14,6 +14,7 @@ namespace lvl_0
         [SerializeField] private GameObject m_cardPrefab;
         [SerializeField] private List<Decks> m_cardDecks;
         [SerializeField] private Button m_drawCardButton;
+        [SerializeField] private AudioClip m_drawCardSFX;
 
         private Dictionary<EDeck, CardDeck> m_deckDictionary = new Dictionary<EDeck, CardDeck>();
         private Dictionary<EDeck, CardDeckConfig> m_configDictionary = new Dictionary<EDeck, CardDeckConfig>();
@@ -213,6 +214,7 @@ namespace lvl_0
             if (m_playersHand.Count < k_maxCardsInHand
                 && m_currentDeck.Count > 0)
             {
+                AudioManager.Instance.PlaySfx(m_drawCardSFX);
                 Card newCard = DrawCard();
                 m_playersHand.Add(newCard);
                 

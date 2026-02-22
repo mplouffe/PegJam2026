@@ -299,6 +299,7 @@ MonoBehaviour:
   - CardDeck: {fileID: 11400000, guid: 91e82ec627d7fbc4eaf1ec05052d6b5a, type: 2}
     Config: {fileID: 11400000, guid: 305c8f8fa15347c4f9bdb8263097d031, type: 2}
   m_drawCardButton: {fileID: 8065711668650260238}
+  m_drawCardSFX: {fileID: 8300000, guid: 5bdb4c54a5ed67b47b66760e12eba8a9, type: 3}
 --- !u!1 &71051611
 GameObject:
   m_ObjectHideFlags: 0
@@ -409,10 +410,36 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_board: {fileID: 1530436747}
   m_dropCardSFX: {fileID: 8300000, guid: 2ad07d19183db5f48a5d073ae4b46d49, type: 3}
-  m_lockPostionSFX: {fileID: 8300000, guid: fe1688bb69a9f584ab33f7b6a8bf66fa, type: 3}
-  m_rotateSFX: {fileID: 0}
-  m_placePieceSFX: {fileID: 0}
-  m_placeDeniedSFX: {fileID: 0}
+  m_lockPostionSFX: {fileID: 8300000, guid: 7959a776b9696404d8bf3acce67c0b3b, type: 3}
+  m_rotateSFX: {fileID: 8300000, guid: 1f3da84b5d6c2124490098276be49bb7, type: 3}
+  m_placePieceSFX: {fileID: 8300000, guid: b1f3993ce2beb404bb0ed40f08c9b611, type: 3}
+  m_placeDeniedSFX: {fileID: 8300000, guid: 705070fcbd656e54faa8c3239f15379d, type: 3}
+  m_invalidPlacementAudioFeedbackDelay:
+    m_easingCurve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 3
+        time: 0
+        value: 0
+        inSlope: 1
+        outSlope: 1
+        tangentMode: 34
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      - serializedVersion: 3
+        time: 1
+        value: 1
+        inSlope: 1
+        outSlope: 1
+        tangentMode: 34
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    m_totalDuration: 0.5
 --- !u!4 &117984750
 Transform:
   m_ObjectHideFlags: 0
@@ -2137,6 +2164,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7392335898896842541, guid: 4e655eec218a093438864f370baa8657, type: 3}
+      propertyPath: m_zeroSFX
+      value: 
+      objectReference: {fileID: 8300000, guid: 406932f9154868447839279c5536445e, type: 3}
+    - target: {fileID: 7392335898896842541, guid: 4e655eec218a093438864f370baa8657, type: 3}
+      propertyPath: m_scoreSFX
+      value: 
+      objectReference: {fileID: 8300000, guid: 36ce5c67c4f28934eb436a7104af1fc7, type: 3}
     - target: {fileID: 8164732368198927385, guid: 4e655eec218a093438864f370baa8657, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0

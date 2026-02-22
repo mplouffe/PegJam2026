@@ -282,7 +282,7 @@ MonoBehaviour:
       m_PostInfinity: 2
       m_RotationOrder: 4
     m_totalDuration: 0.75
-  m_buttonClickedClip: {fileID: 8300000, guid: b186d6842d44aa6469fe67cc183467b7, type: 3}
+  m_buttonClickedClip: {fileID: 8300000, guid: 428477b4cdba02a48b641d18fb50c8d6, type: 3}
 --- !u!1 &1252309489855230741
 GameObject:
   m_ObjectHideFlags: 0

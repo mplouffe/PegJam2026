@@ -78,6 +78,7 @@ MonoBehaviour:
       m_RotationOrder: 4
     m_totalDuration: 1
   m_shakeIntensity: 3
+  m_sfx: {fileID: 8300000, guid: 74640cdc02ea01a43b1a1db8e7753675, type: 3}
 --- !u!1 &4390611865104194742
 GameObject:
   m_ObjectHideFlags: 0

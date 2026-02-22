@@ -346,3 +346,4 @@ MonoBehaviour:
       m_RotationOrder: 4
     m_totalDuration: 1
   m_shakeIntensity: 3
+  m_sfx: {fileID: 8300000, guid: 4d1f6b5732ffe8243befcd9bd9f0b2ed, type: 3}

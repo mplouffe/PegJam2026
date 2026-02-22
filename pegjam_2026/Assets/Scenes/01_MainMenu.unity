@@ -659,7 +659,7 @@ MonoBehaviour:
   m_margin: {x: 0, y: 0, z: 0, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
-  m_hasFontAssetChanged: 1
+  m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
 --- !u!222 &472714137
@@ -980,6 +980,7 @@ GameObject:
   - component: {fileID: 1286666576}
   - component: {fileID: 1286666575}
   - component: {fileID: 1286666574}
+  - component: {fileID: 1286666577}
   m_Layer: 5
   m_Name: Canvas
   m_TagString: Untagged
@@ -1072,6 +1073,19 @@ Canvas:
   m_SortingLayerID: 0
   m_SortingOrder: 0
   m_TargetDisplay: 0
+--- !u!114 &1286666577
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1286666572}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 80444af57431d004c8d1f4e1869590fc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_autoBackgroundTrack: {fileID: 8300000, guid: 8a58b8458349116429285ff41e01559c, type: 3}
 --- !u!1 &1436985849
 GameObject:
   m_ObjectHideFlags: 0

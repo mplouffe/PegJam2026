@@ -24,6 +24,9 @@ namespace lvl_0
         [SerializeField]
         private Item m_itemPrefab;
 
+        [SerializeField]
+        private AudioClip m_pickedSFX;
+
         public Card Card => m_card;
         public int CardValue => m_cardValue;
         public string CardDescription => m_cardDescription;
@@ -92,6 +95,7 @@ namespace lvl_0
 
         public void OnPointerClick(PointerEventData eventData)
         {
+            AudioManager.Instance.PlaySfx(m_pickedSFX);
             m_itemPrefab.ItemShape = m_itemShape;
             m_itemPrefab.ItemCard = m_card;
             var activeItem = Instantiate(m_itemPrefab, eventData.pointerPressRaycast.worldPosition, Quaternion.identity);

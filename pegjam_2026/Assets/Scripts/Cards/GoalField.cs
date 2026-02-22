@@ -23,6 +23,12 @@ public class GoalField : MonoBehaviour
     [SerializeField]
     private Duration m_scaleDuration;
 
+    [SerializeField]
+    private AudioClip m_goalCompleteSFX;
+
+    [SerializeField]
+    private AudioClip m_goalFailedSFX;
+
     private GoalFieldState m_state;
 
     private void Update()
@@ -69,6 +75,7 @@ public class GoalField : MonoBehaviour
         {
             m_goalImage.sprite = m_goalIcons[2];
         }
+        AudioManager.Instance.PlaySfx(isComplete ? m_goalCompleteSFX : m_goalFailedSFX);
         SetState(GoalFieldState.Animating);
     }
 

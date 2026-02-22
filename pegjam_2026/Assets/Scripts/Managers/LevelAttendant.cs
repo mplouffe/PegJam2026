@@ -49,6 +49,10 @@ namespace lvl_0
             }
             else
             {
+                if (GameState.Menu == newGame) {
+
+                    AudioManager.Instance.StopMusic();
+                }
                 SceneManager.sceneLoaded += OnSceneLoaded;
                 SceneManager.LoadScene(m_gameStateDictionary[newGame]);
                 m_currentGame = newGame;  

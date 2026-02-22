@@ -28,6 +28,9 @@ public class MouseFollower : SingletonBase<MouseFollower>
     private Camera m_camera;
     private Vector2Int m_previousCell = new Vector2Int(-1, -1);
 
+    [SerializeField]
+    private Duration m_invalidPlacementAudioFeedbackDelay;
+
     protected override void Awake()
     {
         base.Awake();
@@ -44,6 +47,7 @@ public class MouseFollower : SingletonBase<MouseFollower>
     {
         if (m_activeItem != null)
         {
+            m_invalidPlacementAudioFeedbackDelay.Update(Time.deltaTime);
             Vector3 mouseScreen = Input.mousePosition;
 
             if (mouseScreen.x < 0 || mouseScreen.x > Screen.width ||
@@ -80,7 +84,11 @@ public class MouseFollower : SingletonBase<MouseFollower>
                         }
                     }
 
-                    AudioManager.Instance.PlaySfx(m_placeDeniedSFX);
+                    if (m_invalidPlacementAudioFeedbackDelay.Elapsed())
+                    {
+                        AudioManager.Instance.PlaySfx(m_placeDeniedSFX);
+                        m_invalidPlacementAudioFeedbackDelay.Reset();
+                    }
                 }
             }
             else

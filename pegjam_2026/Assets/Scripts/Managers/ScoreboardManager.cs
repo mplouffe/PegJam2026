@@ -18,8 +18,15 @@ public class ScoreboardManager : SingletonBase<ScoreboardManager>
     [SerializeField]
     private ScoreboardElement m_totalScoreElement;
 
+    [SerializeField]
+    private AudioClip m_scoreSFX;
+
+    [SerializeField]
+    private AudioClip m_zeroSFX;
+
     public void PostScore(int tileScore, string tileName, Color tileColor, float multiplier, string multiplerType, Color multiplierColor, int totalScore)
     {
+        AudioManager.Instance.PlaySfx(tileScore > 0 ? m_scoreSFX : m_zeroSFX);
         m_tileScoreElement.Pop(tileScore, tileName, tileColor);
         m_multiplierElement.Pop(multiplier, multiplerType, multiplierColor);
         m_totalScoreElement.Pop(totalScore, "Score", Color.white);

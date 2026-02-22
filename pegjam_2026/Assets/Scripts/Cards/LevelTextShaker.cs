@@ -14,6 +14,9 @@ public class LevelTextShaker : MonoBehaviour
     [SerializeField]
     private float m_shakeIntensity;
 
+    [SerializeField]
+    private AudioClip m_sfx;
+
     private Vector3 m_originalPosition;
 
     private ShakerState m_state;
@@ -49,6 +52,7 @@ public class LevelTextShaker : MonoBehaviour
             case ShakerState.Shaking:
                 gameObject.SetActive(true);
                 m_shakeDuration.Reset();
+                AudioManager.Instance.PlaySfx(m_sfx);
                 break;
             case ShakerState.Steady:
                 m_shakeTarget.localPosition = m_originalPosition;
